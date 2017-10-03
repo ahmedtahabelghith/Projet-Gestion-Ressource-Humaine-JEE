@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory name="bd">
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/management_resource_human_database</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+ 
+       
+       	<mapping package="com.model" /> 
+	 	<mapping class="com.model.AdditionalCandidates" /> 
+	 	 <mapping class="com.model.Candidates" />
+	 	 <mapping class="com.model.CtpFolders" /> 
+	 	 <mapping class="com.model.EmailsTrackings" /> 
+	 	 <mapping class="com.model.EvaluationExperience" />
+	 	 <mapping class="com.model.StatesCandidates" />  	 
+	 	 <mapping class="com.model.Users" /> 
+	 	 <mapping class="com.model.Validacs" />  
+	 	 <mapping class="com.model.QuestionEvaluation" />
+      	<mapping class="com.model.SheetInformation" />
+      	<mapping class="com.model.ContenuValidac" />
+    </session-factory>
+</hibernate-configuration>

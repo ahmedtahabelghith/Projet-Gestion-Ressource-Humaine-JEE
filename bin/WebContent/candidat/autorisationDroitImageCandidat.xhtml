@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head> 
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+  
+   <style type="text/css">
+.ui-steps .ui-steps-item {
+    width: 20%;
+}
+ 
+.ui-state-highlight {
+    text-shadow: none !important;
+}
+ 
+.ui-steps.custom {
+    margin-bottom: 30px;
+}
+ 
+.ui-steps.custom .ui-steps-item .ui-menuitem-link {
+    height: 10px;
+    padding: 0 1em;
+}
+ 
+.ui-steps.custom .ui-steps-item .ui-steps-number {
+    background-color: red;
+    color: #FFFFFF;
+    display: inline-block;
+    width: 30px;
+    border-radius: 10px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+ h3{margin-left: 20px;}
+ h4,ul,p,h5{margin-left: 40px;}
+  
+  </style>
+</h:head>
+ 
+  
+<h:body  >
+ 
+<p:steps activeIndex="2" styleClass="custom" readonly="false">
+    <p:menuitem value="Fiche de renseignements" url="ficheDeRenseignementCandidat.xhtml"/>
+    <p:menuitem value="Règlement interne" url="reglementInterneCandidat.xhtml"/>
+    <p:menuitem value="Autorisation de droit à l’image" url="autorisationDroitImageCandidat.xhtml"/>
+    <p:menuitem value="Note de REET" url="noteReetCandidat.xhtml"/>   
+    <p:menuitem value="Contrat de travail" url="contratSwissContactCandidat.xhtml"/>
+   
+</p:steps>
+<center>
+<p:graphicImage value="../images/elan.png" style="width:220px; height:180px;  display: inline-block;   "/>
+ </center>
+ 
+	  <center style="color: red;font-size:24px; font-weight:   bold; margin: 30px 0px 30px 0px;">Autorisation de droit à l'image</center>
+	  
+	<div style="  color:#000000; margin-left:2%;margin-right:2%; width: 96%;  font-size: 16px; border: 1px solid #000000; margin-top: 50px;text-align: justify;">
+ 
+	  		<h3>Je, soussigné, </h3>  
+ 
+	  <div style="  color:#000000; margin-left: 100px; width: 60%;  font-size: 16px;text-align: justify;">
+	<p>Nom : <b style="color: #FF4500;  text-transform :uppercase;">#{ctpFolders.currentCtp.candidates.lastName}</b></p>
+
+	<p>Prénom : <b style="color: #FF4500;  text-transform :uppercase;">#{ctpFolders.currentCtp.candidates.firstName}</b></p>
+
+	<p>Date et lieu de naissance : <b style="color: #FF4500;  text-transform :uppercase;">#{ctpFolders.currentCtp.candidates.birthday}</b></p>
+
+	<p>Adresse : <b style="color: #FF4500;  text-transform :uppercase;">#{ctpFolders.currentCtp.candidates.address}</b></p>
+
+	<p>Numéro de la CIN : <b style="color: #FF4500;  text-transform :uppercase;">#{ctpFolders.currentCtp.candidates.cin}</b> délivrée le <b style="color: #FF4500;  text-transform :uppercase;">#{ctpFolders.currentCtp.candidates.cinIssued} </b>  </p>
+		</div>
+		
+		<div style="width: 95%;  color : #000000; margin-top: 50px;margin-left: 30px;   font-size: 16px;text-align: justify;">
+<p>Donne à Elan by CONECT l’autorisation de reproduire ou représenter la (ou les) photographie(s) me représentant prise(s) par lui ou par un photographe ayant une autorisation de sa part pour tous usages y compris publicitaires et commerciaux, ou pour les usages comme la production d'illustration d'ouvrages ou l'exposition et galeries y compris sur le site web.</p>
+
+<p>Cette autorisation est valable, sans limitation de durée, sauf dénonciation de ma part par lettre recommandée avec accusé de réception adressée à Elan by CONECT après un délai de deux (02) années minimum suivant la signature de la présente.</p>
+
+<p>Elle interdit expressément une utilisation de mon image dans tout support à caractère pornographique, raciste, xénophobe ou toute autre exploitation préjudiciable.</p>
+
+<p>Les légendes accompagnant la reproduction ou la représentation de la (ou des) photographie(s) ne doivent pas porter atteinte à ma réputation ou ma vie privée.</p>
+
+
+
+<p>Fait à Tunis, le <b style="color: #FF4500;  text-transform :uppercase;text-decoration : underline;">#{ctpFolders.dat}</b></p>
+ 
+  </div>
+	  
+	  </div>
+   <center>
+<p:link style="color:red; margin-top:30px;" value="je valide le contenu de fichier et je passe à un autre étape"  outcome="noteReetCandidat.xhtml"/>
+</center>
+   
+</h:body>
+		
+ 
+		</html>

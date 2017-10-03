@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head> 
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+  
+  <style>
+ h3{margin-left: 20px;}
+ h4,ul,p,h5{margin-left: 40px;}
+ #bor{height: 180px; border-bottom: 2px;}
+ .br{width: 270px;} 
+ 
+  </style>
+</h:head>
+ 
+ 
+ 
+		
+<h:body  >
+ 
+  
+<h:form>
+	
+ 
+<h:panelGrid columns="2">
+    <h:panelGroup>
+ 
+ 
+ <center style="color: red;font-size:22px; font-weight:   bold; margin: 30px 0px 30px 0px;">Evaluation des Acquis en Entreprise d'Entraînement -VALIDAC-</center>
+	
+	 
+	
+ 
+		<table style="width: 99%; height: 99%; text-align: center;font-size:11px;" border="1">
+			<tr >
+				<td rowspan="3" width="200px;"><p:graphicImage value="../images/elan.png" style="width:200px; height:100px;"/>
+ </td>
+				<td rowspan="3">Graduation du niveau<br/>des acquisitions <br/>en fonction de la durée<br/>de la mission</td>
+				<td><b>Nom:</b></td>
+				<td><b>Prénom:</b></td>
+				<td><b>Mission:</b></td>
+				<td><b>au:</b></td>
+			</tr>
+				<tr>
+				<td>a été initié</td>
+				<td>a pratiqué (voir indicateurs)</td>
+				<td>s'est perfectionné</td>
+				<td>a démontré(voir indicateur)</td>
+			</tr>
+			 
+			<tr>
+				<td rowspan="2" colspan="4"><p>Evaluer les progrès de la qualité et de la quantité des réalisations et le temps consacré</p>
+					<p>Mettre une marque sur la ligne fléchée de chaque objectif en regard des critères</p>
+					<p>Porter dans les cases correspondantes les justifications chiffrées, à dater et à (co)signer </p></td>
+				 
+			</tr>
+			<tr>
+				<td colspan="2"><b>Service : Ressources Humaines </b></td>
+				 
+			</tr>
+			<tr>
+				<td><b> 1 Objectif SF + 1 SE afférent</b></td>
+				 <td>        </td>
+				 <td colspan="4"><b>Se reporter au répertoire des buts de service pour les personnaliser en objectif</b></td>
+			</tr>
+			
+			
+			<tr>
+		 
+				<td id="bor" >#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(0).objectif}</td>
+				<td id="bor"><b>Autoévaluation de l'employé-e</b><br/>Porter les justification : date,volume,collégues concerné-es</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(0).initiale}</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(0).pratique}</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(0).perfectione}</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(0).demontre}</td>		
+			</tr>
+			<tr>				
+		 
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac6.objectif}"     /></td>	
+				<td><b>Evaluation avec manageur direct</b> <br/>avec date entretient et visa</td>
+				<td id="bor" class="br"> <p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac6.initiale}"    /></td>
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"    value="#{contenuValidacBean.validac6.pratique}"   /></td>
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac6.perfectione}"    /></td>
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac6.demontre}"    /></td>	
+			</tr>
+			
+		<tr>
+		 
+				<td id="bor" >#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(1).objectif}</td>
+				<td id="bor"><b>Autoévaluation de l'employé-e</b><br/>Porter les justification : date,volume,collégues concerné-es</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(1).initiale}</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(1).pratique}</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(1).perfectione}</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(1).demontre}</td>		
+			</tr>
+			<tr>				
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac7.objectif}"    /></td>	
+				<td><b>Evaluation avec manageur direct</b> <br/>avec date entretient et visa</td>
+				<td id="bor" class="br"> <p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac7.initiale}"    /></td>
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"    value="#{contenuValidacBean.validac7.pratique}"   /></td>
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac7.perfectione}"    /></td>
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac7.demontre}"    /></td>	
+			</tr>
+			
+			<tr>
+		 
+				<td id="bor" >#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(2).objectif}</td>
+				<td id="bor"><b>Autoévaluation de l'employé-e</b><br/>Porter les justification : date,volume,collégues concerné-es</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(2).initiale}</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(2).pratique}</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(2).perfectione}</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(2).demontre}</td>		
+			</tr>
+				<tr>				
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac8.objectif}"    /></td>	
+				<td><b>Evaluation avec manageur direct</b> <br/>avec date entretient et visa</td>
+				<td id="bor" class="br"> <p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac8.initiale}"    /></td>
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"    value="#{contenuValidacBean.validac8.pratique}"   /></td>
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac8.perfectione}"    /></td>
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac8.demontre}"    /></td>	
+			</tr>
+			
+		<tr>
+		 
+				<td id="bor" >#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(3).objectif}</td>
+				<td id="bor"><b>Autoévaluation de l'employé-e</b><br/>Porter les justification : date,volume,collégues concerné-es</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(3).initiale}</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(3).pratique}</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(3).perfectione}</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(3).demontre}</td>		
+			</tr>
+			<tr>				
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac9.objectif}"    /></td>	
+				<td><b>Evaluation avec manageur direct</b> <br/>avec date entretient et visa</td>
+				<td id="bor" class="br"> <p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac9.initiale}"    /></td>
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"    value="#{contenuValidacBean.validac9.pratique}"   /></td>
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac9.perfectione}"    /></td>
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac9.demontre}"    /></td>	
+			</tr>
+			
+		<tr>
+		 
+				<td id="bor" >#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(4).objectif}</td>
+				<td id="bor"><b>Autoévaluation de l'employé-e</b><br/>Porter les justification : date,volume,collégues concerné-es</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(4).initiale}</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(4).pratique}</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(4).perfectione}</td>
+				<td id="bor" class="br">#{contenuValidacBean.rechercheContenuValidacCandidat(ctpFolders.currentCtp).get(4).demontre}</td>		
+			</tr>
+			<tr>				
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac10.objectif}"    /></td>	
+				<td><b>Evaluation avec manageur direct</b> <br/>avec date entretient et visa</td>
+				<td id="bor" class="br"> <p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac10.initiale}"    /></td>
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"    value="#{contenuValidacBean.validac10.pratique}"   /></td>
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac10.perfectione}"    /></td>
+				<td id="bor" class="br"><p:inputTextarea rows="12" cols="33"   value="#{contenuValidacBean.validac10.demontre}"    /></td>	
+			</tr>
+			 
+		</table>
+ 
+	<center>
+	 <p:commandButton style="margin-bottom:50px;" value="Enregistrer"  action="#{contenuValidacBean.saveValidacCoach(ctpFolders.currentCtp)}"     icon="ui-icon-check" />
+	 </center>
+ 
+ 
+	  
+ </h:panelGroup>
+ </h:panelGrid>
+ </h:form>
+   
+</h:body>
+		
+		 
+	 
+		</html>

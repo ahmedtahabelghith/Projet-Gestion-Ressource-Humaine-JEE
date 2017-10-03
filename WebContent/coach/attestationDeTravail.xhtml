@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head> 
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+  
+  <style>
+ h3{margin-left: 20px;}
+ h4,ul,p,h5{margin-left: 40px;}
+  
+  </style>
+</h:head>
+ 
+ 
+ 
+		
+<h:body  >
+<center>
+<p:graphicImage value="../images/elan.png" style="width:400px; height:250px;  display: inline-block;   "/>
+ </center>
+ 
+	   
+<span style="float: right; margin-right: 80px;">Tunis, le <b> #{ctpFoldersBean.dateSystem()}</b></span>
+<br/>
+	  <center style="color: red;font-size:24px; font-weight:   bold; margin: 30px 0px 30px 0px;">ATTESTATION DE TRAVAIL<br/>Conditions de certification</center>
+	   
+	  
+	 
+ 
+ <div style="  color:#000000; margin-left:15%; width: 70%;  font-size: 17px;  margin-top: 50px;text-align: justify;">
+<p>Je, soussigné,</p>
+<p> M/Mme. ..............................., Manager de l’entreprise d’entraînement Elan by CONECT, atteste par la présente que  M/Mme. <b>#{ctpFolders.currentCtp.candidates.firstName} #{ctpFolders.currentCtp.candidates.lastName}</b>, titulaire de la CIN N°<b>#{ctpFolders.currentCtp.candidates.cin} </b>, a été engagée pour une mission à durée déterminée du <b>#{ctpFolders.currentCtp.hiringDate} </b>jusqu'au <b>#{ctpFoldersBean.dateAttestation(ctpFolders.currentCtp)} </b> en qualité de comptable.</p>
+
+<p>Elle nous a donné pleine et entière satisfaction et nous a quitté libre de tout engagement.</p>
+
+<p>En foi de quoi, cette attestation est délivrée à l'intéressée pour valoir ce que de droit.</p>
+ 
+
+<span style="float: right; margin-top: 50px;">Le Manager .......................</span>
+ 
+<br/>
+<span style="float: right; margin-top: 50px;">.</span>
+ 
+  
+ 
+ </div>
+ 
+   
+</h:body>
+		
+		 
+	 
+		</html>

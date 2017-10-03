@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head> 
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+ 
+</h:head>
+ 
+ 
+
+<h:body style="background-color: #10578D;   ">
+
+<div style="background-color: #FFFFFF;  ">
+<p:graphicImage value="../images/reet.png" style="width:550px; height:130px; margin-left:250px;  display: inline-block;    "/>
+<p:graphicImage value="../images/elan.png" style="width:230px; height:190px; margin-left:100px; display: inline-block; "/>
+
+<div style="border:2px solid #000000; display: inline-block; height: 50px; width: 250px; float: right;margin-top: 30px; margin-right: 30px;  ">
+	<span style="margin-left: 20px; ">      Date de sortie : ..............</span><br/>
+	<span style="margin-left: 20px;">      Code d'identification : ..............</span>
+</div>
+<center style="color: #000000;font-size:40px; font-weight:   bold; margin: 30px 0px 30px 0px;">Evaluation d'expérience professionnelle en entreprise d'entrainement</center>
+
+ 
+<div style="border : 2px solid #000000; width: 50%; margin: 30px 0px 30px 400px; line-height:30px; ">
+	<div style="margin: 30px 0px 30px 20px;">
+	<h4 style="color: red;  ">Interne :</h4><br/>
+	Nombrede jours effectifs de travail : ....... jours, du #{ctpFolders.currentCtp.hiringDate} au #{ctpFolders.currentCtp.exitDate} 
+	<br/>
+	Certification : <span style="margin-left: 20px;"> Oui  <p:selectBooleanCheckbox  disabled="true" value="#{ctpFoldersBean.evaluationOui(ctpFolders.currentCtp.evaluationExperience)}"  /> </span> <span style="margin-left: 20px;"> Non  <p:selectBooleanCheckbox  disabled="true" value="#{ctpFoldersBean.evaluationNon(ctpFolders.currentCtp.evaluationExperience)}" /></span>
+	<br/>
+	Cause du départ : <span style="margin-left: 20px;">terme du contrat <p:selectBooleanCheckbox value="" /> </span>   <span style="margin-left: 20px;">recrutement <p:selectBooleanCheckbox value="" /> </span>   <span style="margin-left: 20px;">abandon <p:selectBooleanCheckbox value="" /> </span>
+	<br/>
+	Raisons d'abandon :  <p:inputTextarea rows="1" cols="70"  style="margin-left:30px;"  />
+	<br/>
+	Contact du recruteur : <p:inputTextarea rows="1" cols="70"  style="margin-left:30px;"  />
+	</div>
+
+</div>
+ 
+
+<div style="border : 2px solid #000000; width: 97%; margin: 30px 0px 10px 20px; line-height:30px; font-size:18px; ">
+	<div style="margin: 30px 0px 30px 20px;">
+		<h3 style="color: red;  ">Evaluation générale </h3>	
+		<br/>
+			<h3>Votre expérience en entreprise d'entrainement vous a-t-elle globalement convenu ?</h3>
+			<span style="margin-left: 30px; ">oui tout à fait	<p:selectBooleanCheckbox  disabled="true" value="#{ctpFoldersBean.premierCase(ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(0).toString())}"  /></span>	<span style="margin-left: 30px;">oui, plutôt	<p:selectBooleanCheckbox   disabled="true" value="#{ctpFoldersBean.deuxiemeCase(ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(0).toString())}"  /></span>  <span style="margin-left: 30px;">	non, pas vraiment	<p:selectBooleanCheckbox  disabled="true" value="#{ctpFoldersBean.troisiemeCase(ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(0).toString())}" /> </span> <span style="margin-left: 30px;">non pas du tout <p:selectBooleanCheckbox  disabled="true" value="#{ctpFoldersBean.quatrièmeCase(ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(0).toString())}" /></span>
+			 
+			<h3>Quels étaient les points forts de cette expérience, qu’avez-vous le plus apprécié ? </h3>
+ 			 <p:inputTextarea rows="2" cols="140"  style="margin-left:30px;"  value="#{ctpFoldersBean.questionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(1).toString()}" readonly="true" /> 
+			<h3>Et qu’avez-vous le moins apprécié ? </h3>
+			 <p:inputTextarea rows="2" cols="140"  style="margin-left:30px;" value="#{ctpFoldersBean.questionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(2).toString()}" readonly="true" />
+			
+			<h3>Quelle est votre appréciation :</h3>
+			<center>
+			<table border="1" style="text-align: center; width: 90%;">
+				<tr >
+					<td style="width: 400px;"></td>
+					<td style="width: 250px; color:#6A5ACD;"><h4>Pas du tout satisfaisant/Peu satisfaisant/Satisfaisant/Très satisfaisant</h4></td>
+					<td style="width:400px; color:#6A5ACD;"><h4>Commentaires</h4> </td>
+				</tr>
+				<tr>
+					<td>Durée (3 mois)</td>
+					<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(3).toString()}"/></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 15px;" readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(3).toString()}"  /></td>
+				</tr>
+				
+				<tr>
+					<td>Réponse à vos besoins</td>
+					<td><p:rating  stars="4" cancel="false"   style="margin-left:100px;" readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(4).toString()}"/></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;" readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(4).toString()}"  /></td>
+				</tr>
+				
+				<tr>
+					<td>Equipements et espace de travail</td>
+					<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(5).toString()}"/></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;" readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(5).toString()}"  /></td>
+				</tr>
+				
+				<tr>
+					<td>Organisation et rigueur du travail</td>
+					<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(6).toString()}"/></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;" readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(6).toString()}"  /></td>
+				</tr>
+				
+				<tr>
+					<td>Ambiance du groupe et climat de travail</td>
+					<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(7).toString()}"/></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;" readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(7).toString()}"  /></td>
+				</tr>
+				
+				<tr>
+					<td>Rythme, horaires et volume de travail</td>
+					<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(8).toString()}" /></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;" readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(8).toString()}"  /></td>
+				</tr>
+				
+				<tr>
+					<td>Niveau d’exigence (trop exigeant → pas assez exigeant)</td>
+					<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(9).toString()}"/></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;" readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(9).toString()}"   /></td>
+				</tr>
+				
+				<tr>
+					<td>Qualité de l’encadrement</td>
+					<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(10).toString()}"/></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;"  readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(10).toString()}"  /></td>
+				</tr>
+				
+				<tr>
+					<td>Fréquence et intérêt des réunions de coordination</td>
+					<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(11).toString()}"/></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;"   readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(11).toString()}"  /></td>
+				</tr>
+				
+				<tr>
+					<td>Accompagnement pour la recherche d'emploi</td>
+					<td> <p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(12).toString()}"/></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;" readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(12).toString()}"  /></td>
+				</tr>
+			
+			</table>
+ 		</center>
+ 		
+ 		
+ 		
+ 		<h3 style="color: red;  ">Evaluation spécifique  :</h3>
+			<center>
+			<table border="1" style="text-align: center; width: 90%;">
+				<tr >
+					<td style="width: 335px;"></td>
+					<td style="width: 250px; color:#6A5ACD;"><h4>Pas du tout/Partiellement/En grande partie/Tout à fait</h4></td>
+					<td style="width:400px;  color:#6A5ACD;"><h4>Commentaires</h4> </td>
+				</tr>
+				<tr>
+					<td>Les objectifs de formation ont-ils été définis avec vous ?</td>
+					<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(13).toString()}"/></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;" readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(13).toString()}"  /></td>
+				</tr>
+				
+				<tr>
+					<td>Les objectifs de formation ont-ils été atteints ?</td>
+					<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(14).toString()}"/></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;" readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(14).toString()}" /></td>
+				</tr>
+				
+				<tr>
+					<td>Les tâches qui vous ont été attribuées étaient-elles adaptées à vos compétences ?</td>
+					<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(15).toString()}"/></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;" readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(15).toString()}"  /></td>
+				</tr>
+				
+				<tr>
+					<td>Etes-vous satisfaits des compétences que vous avez acquises ?</td>
+					<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(16).toString()}"/></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;" readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(16).toString()}" /></td>
+				</tr>
+				
+				<tr>
+					<td>Les encadrants savent-ils mobiliser les ETP ? (donnent envie d'apprendre, font participer,...)</td>
+					<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(17).toString()}"/></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;" readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(17).toString()}"  /></td>
+				</tr>
+				
+				<tr>
+					<td>Les encadrants savent-ils s'adapter à vos demandes ?</td>
+					<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(18).toString()}"/></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;" readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(18).toString()}"  /></td>
+				</tr>
+				
+				<tr>
+					<td>Estimez-vous que cette formation vous aidera à être plus performant dans votre futur travail ?</td>
+					<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(19).toString()}"/></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;" readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(19).toString()}"   /></td>
+				</tr>
+				
+				<tr>
+					<td>Cette expérience vous ouvre-t-elle de nouvelles perspectives ?  </td>
+					<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(20).toString()}"/></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;"  readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(20).toString()}"  /></td>
+				</tr>
+				
+				<tr>
+					<td>Avez-vous l'impression que cette formation va changer quelque chose dans votre comportement ou dans votre compréhension (que ce soit dans le domaine professionnel, la vie privée, etc.) ?</td>
+					<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(21).toString()}" /></td>
+					<td><p:inputTextarea rows="1" cols="50"  style="margin:15px 30px 15px 30px;" readonly="true" value="#{ctpFoldersBean.commentairevoteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(21).toString()}"  /></td>
+				</tr>
+				
+				 
+			
+			</table>
+ 		</center>
+ 		
+ 		<h3>Que comptez-vous faire immédiatement après la formation pour valoriser ce que vous avez appris ?</h3>
+ 			<p:inputTextarea rows="1" cols="140"  style="margin:15px 30px 15px 30px;" value="#{ctpFoldersBean.questionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(22).toString()}" readonly="true"  />
+ 		<h3>Seriez-vous prêt à contribuer financièrement pour suivre une telle formation ? </h3>
+ 		<br/>
+ 		<p:selectBooleanCheckbox disabled="true" value="#{ctpFoldersBean.premierCase(ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(23).toString())}" />Oui, en payant un écolage mensuel. De quel montant maximum ? : <p:inputTextarea rows="1" cols="7"  readonly="true" value="#{ctpFoldersBean.questionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(23).toString()}"/> DT / mois 
+		<br/>
+		<p:selectBooleanCheckbox  disabled="true" value="#{ctpFoldersBean.deuxiemeCase(ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(23).toString())}" />J’aurais été prêt à y participer sans être indemnisé
+		<br/>
+		<p:selectBooleanCheckbox disabled="true"  value="#{ctpFoldersBean.troisiemeCase(ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(23).toString())}" />Non
+ 		
+ 		<h3>Conseillerez-vous cette expérience à d'autres personnes ? </h3>
+ 		<span style="margin-left: 20px;">Oui  <p:selectBooleanCheckbox  disabled="true" value="#{ctpFoldersBean.premierCase(ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(24).toString())}"/> </span> <span style="margin-left: 20px;"> Non  <p:selectBooleanCheckbox   disabled="true" value="#{ctpFoldersBean.deuxiemeCase(ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(24).toString())}"/></span>
+ 		<h5>Si oui, à quels types de personnes ? Et quel(s) argument(s) utiliseriez-vous pour les convaincre ? </h5>
+ 		<p:inputTextarea readonly="true" rows="1" cols="140"  style="margin:0px 30px 15px 30px;" value="#{ctpFoldersBean.questionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(24).toString()}" />
+ 		
+ 		<h3>Si vous deviez suivre à nouveau cette formation, que proposeriez-vous pour l'améliorer ?</h3>
+ 		<p:inputTextarea rows="1" cols="140"  style="margin:0px 30px 15px 30px;"  value="#{ctpFoldersBean.questionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(25).toString()}" readonly="true" />
+ 		
+ 		<h3>Etes-vous intéressés à rester en contact avec d’autres ETP, avec les encadrants et/ou les ee en général ?    </h3>
+ 		<span style="margin-left: 20px;">Oui  <p:selectBooleanCheckbox  disabled="true"  value="#{ctpFoldersBean.premierCase(ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(26).toString())}" /> </span> <span style="margin-left: 20px;"> Non  <p:selectBooleanCheckbox   disabled="true" value="#{ctpFoldersBean.deuxiemeCase(ctpFoldersBean.voteQuestionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(26).toString())}"/></span>
+ 		<h5>Si oui, Si oui, dans quel(s) but(s) ? </h5>
+ 		
+ 		<h3>Souhaitez-vous ajouter quelque chose ? </h3>
+ 		<p:inputTextarea rows="1" cols="140"  style="margin:0px 30px 15px 30px;"  value="#{ctpFoldersBean.questionCtp(ctpFolders.currentCtp.evaluationExperience.idEvaluation).get(27).toString()}"  readonly="true"  />
+	</div>
+</div>
+
+
+</div>
+		</h:body>
+		
+		 
+	 
+		</html>

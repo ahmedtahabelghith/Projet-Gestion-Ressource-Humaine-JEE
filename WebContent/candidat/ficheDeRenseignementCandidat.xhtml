@@ -1,0 +1,720 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head> 
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+   
+<style type="text/css">
+.ui-steps .ui-steps-item {
+    width: 20%;
+}
+ 
+.ui-state-highlight {
+    text-shadow: none !important;
+}
+ 
+.ui-steps.custom {
+    margin-bottom: 30px;
+}
+ 
+.ui-steps.custom .ui-steps-item .ui-menuitem-link {
+    height: 10px;
+    padding: 0 1em;
+}
+ 
+.ui-steps.custom .ui-steps-item .ui-steps-number {
+    background-color: red;
+    color: #FFFFFF;
+    display: inline-block;
+    width: 30px;
+    border-radius: 10px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+</style>
+</h:head>
+
+
+	<body >
+		
+	    
+ 
+<p:steps activeIndex="0" styleClass="custom" readonly="false">
+    <p:menuitem value="Fiche de renseignements" url="ficheDeRenseignementCandidat.xhtml"/>
+    <p:menuitem value="Règlement interne" url="reglementInterneCandidat.xhtml"/>
+    <p:menuitem value="Autorisation de droit à l’image" url="autorisationDroitImageCandidat.xhtml"/>
+     <p:menuitem value="Note de REET" url="noteReetCandidat.xhtml"/>    
+    <p:menuitem value="Contrat de travail" url="contratSwissContactCandidat.xhtml"/>
+</p:steps>
+
+    
+    
+  
+<div style="background-color: #FFFFFF;  ">
+<p:graphicImage value="../images/reet.png" style="width:550px; height:130px; margin-left:250px;  display: inline-block;    "/>
+<p:graphicImage value="../images/elan.png" style="width:230px; height:190px; margin-left:100px; display: inline-block; "/>
+
+<div style="border:2px solid #000000; display: inline-block; height: 50px; width: 250px; float: right;margin-top: 30px; margin-right: 30px;  ">
+	<span style="margin-left: 20px; ">      Date de sortie : ..............</span><br/>
+	<span style="margin-left: 20px;">      Code d'identification : ..............</span>
+</div>
+<center style="color: #000000;font-size:40px; font-weight:   bold; margin: 30px 0px 30px 0px;">Fiche de renseignements</center>
+
+ 
+<div style="border : 1px solid #000000; width: 80%; margin: 30px 0px 30px 130px; line-height:30px; ">
+	<div style="margin: 30px 0px 30px 20px;">
+	<center>
+	<h4>
+Cette fiche de renseignements doit être remplie obligatoirement par le candidat lui-même et avec le plus de précision et d'attention possibles.
+	</h4>
+	</center>
+	</div>
+</div> 
+  
+</div>
+
+
+ <h3>Identité et contact</h3>
+<table style="margin-left: 380px; ">
+<tr>
+<td>E-mail :</td>
+<td>
+  <h:form id="vvfrm">
+  
+       
+			<p:selectOneMenu    style="width:200px;"  value="#{ctpFoldersBean.var}" required="true"   >
+		                <f:selectItem itemLabel="Select One" itemValue="" />
+		                <f:selectItems value="#{candB.findAllCandidates()}" var="var"  itemLabel="#{var.firstName} #{var.lastName} ( #{var.email} )" itemValue="#{var.email}"  />
+		                 
+		       </p:selectOneMenu>
+		 
+	 
+	 
+	 <p:commandButton value="OK"    icon="ui-icon-search" style="border:2px solid #FFFFFF; position: absolute; "  update=":f1:panUpdate :ff2:tab :ff3:tabl :ff4:tabl :ff5:tabl :ff6:tabl :ff7:tabl pp"  >
+		        <f:setPropertyActionListener value="#{ctpFoldersBean.rechercheCtpFoldersSelonMail(ctpFoldersBean.var)}"	target="#{ctpFolders.currentCtp}" />
+				 <f:setPropertyActionListener value=" "	target="#{sheetInformationBean.rep1}" />
+				<f:setPropertyActionListener value=" "	target="#{sheetInformationBean.rep2}" />
+				<f:setPropertyActionListener value=" "	target="#{sheetInformationBean.rep3}" />
+				<f:setPropertyActionListener value=" "	target="#{sheetInformationBean.rep4}" />
+				<f:setPropertyActionListener value=""	target="#{sheetInformationBean.rep5}" />
+				</p:commandButton>
+	</h:form>			
+				
+				</td>
+				</tr>
+</table>
+ 
+
+ 
+		<h:form  id="f1" >		   
+					<p:panel id="panUpdate" style="margin-bottom:10px;">
+						<h:panelGrid columns="2" cellpadding="5">
+						
+						
+<table style="float: left; margin-right:50px;   "    >
+
+<tr>
+	<td>Nom  :</td><td><p:inputText value="#{ctpFolders.currentCtp.candidates.lastName}"    /></td>  
+ </tr>
+<tr>
+	<td>Prénom  :</td><td><p:inputText value="#{ctpFolders.currentCtp.candidates.firstName}"    /></td>  
+ </tr>
+ 
+ <tr>
+	<td>Adresse  :</td><td><p:inputText value="#{ctpFolders.currentCtp.candidates.address}"    /></td> 
+ </tr>
+ <tr>
+	<td>N° Tél  :</td><td><p:inputText value="#{ctpFolders.currentCtp.candidates.tel}"    /></td>
+ </tr>
+ <tr>
+	<td>Sexe  :</td><td> <p:selectOneMenu  value="#{ctpFolders.currentCtp.candidates.sexe}" style="width:220px"> 
+            <f:selectItem itemLabel="#{ctpFoldersBean.changeSexe(ctpFolders.currentCtp.candidates.sexe)}" itemValue="#{ctpFolders.currentCtp.candidates.sexe}" />            
+            <f:selectItem itemLabel="Homme" itemValue="h" />
+            <f:selectItem itemLabel="Femme" itemValue="f" />
+        </p:selectOneMenu>  </td> 
+ </tr>
+ <tr>
+	<td>Date de naissance  :</td><td><p:calendar   value="#{ctpFolders.currentCtp.candidates.birthday}" /> </td>  
+ </tr>
+  
+
+</table>
+
+<table style="float: left; margin-right:50px;   "    >
+ 
+
+ <tr>
+	<td>Nationalité  :</td><td><p:inputText value="#{ctpFolders.currentCtp.candidates.nationality}"    /></td> 
+ </tr> 
+ <tr>
+	<td>CIN n°  :</td><td><p:inputText value="#{ctpFolders.currentCtp.candidates.cin}"    /></td> 
+ </tr>
+ <tr>
+	<td>Délivrée le  :</td><td><p:calendar   value="#{ctpFolders.currentCtp.candidates.cinIssued}" /></td>
+ </tr>
+ <tr>
+	<td>Statut matrimonial  :</td><td><p:selectOneMenu value="#{ctpFolders.currentCtp.candidates.familySituation}" style="width:220px"> 
+            <f:selectItem itemLabel="#{ctpFolders.currentCtp.candidates.familySituation}" itemValue="#{ctpFolders.currentCtp.candidates.familySituation}" />            
+            <f:selectItem itemLabel="Célibataire " itemValue="Célibataire" />
+            <f:selectItem itemLabel="Marié(e)" itemValue="Marié(e)" />
+            <f:selectItem itemLabel="Veuf(Ve)" itemValue="Veuf(Ve)" />
+            </p:selectOneMenu></td>
+ </tr>
+ <tr>	<td>Enfants à charges  :</td><td><p:inputText value="#{ctpFolders.currentCtp.candidates.childNumber}"    /></td>
+ </tr>
+ <tr><td></td><td></td></tr>
+ <tr><td> </td><td> <p:commandButton value="OK"     icon="ui-icon-search"    action="#{ctpFolders.saveCtpFoldersSansSupprimerCurentCtp()}" /></td></tr>
+</table> 						
+	</h:panelGrid>
+	</p:panel>
+	</h:form> 
+
+
+
+ <h:form  id="ff2" >		   
+
+<center>
+<p:dataTable var="car" id="tab"  style="width:70%; margin-top:50px;" value="#{sheetInformationBean.rechercheExperienceProfessionnelleSelonMatricule(ctpFolders.currentCtp.matricule)}">
+    <f:facet name="header">
+        Expérience professionnelle
+    </f:facet>
+ 
+    <p:column headerText="Dates début">
+        <h:outputText value="#{car.dateStart}" /> 
+    </p:column>
+    
+   <p:column headerText="Dates fin">
+        <h:outputText value="#{car.dateEnd}" />
+    </p:column>
+    
+    <p:column headerText="Postes">
+        <h:outputText value="#{car.post}" />
+    </p:column>
+ 
+    <p:column headerText="Entreprise">
+        <h:outputText value="#{car.business}" />
+    </p:column>
+ 
+    <p:column headerText="Rémunération">
+        <h:outputText value="#{car.remuneration}" />
+    </p:column>
+ 
+    
+</p:dataTable>
+</center>
+<center>
+<p:commandButton value="Ajouter une expérience"     icon="ui-icon-plus"    onclick="PF(':ff2:dlgAjout').show();" />
+</center>
+</h:form>
+
+ 
+
+  <p:dialog  
+					header="----------------------------------------------- Ajouter-----------------------------------------------"
+					widgetVar=":ff2:dlgAjout" showEffect="explode" hideEffect="bounce"
+					modal="true" resizable="false" appendTo="" >
+					<center>
+		<h:form  id="f3" >		
+		    <p:panel id="panAjout" style="margin-bottom:10px;">
+		    <p:messages id="messages" showDetail="true" autoUpdate="true" />
+				 <h:panelGrid columns="2" cellpadding="5">
+							<h:outputText value="Dates début :" for="dateDebut"/>
+							<p:calendar   id="dateDebut" value="#{sheetInformationBusiness.currentSheetInformation.dateStart}" required="true" /> 
+							<p:outputLabel value="Dates fin :" for="dateFin" />
+							<p:calendar  id="dateFin" value="#{sheetInformationBusiness.currentSheetInformation.dateEnd}"  required="true"/> 
+							<p:outputLabel value="Postes :" for="post" />
+							<h:inputText id="post" value="#{sheetInformationBusiness.currentSheetInformation.post}"  required="true"/>
+							<p:outputLabel value="Entreprise :" for="entreprise" />
+							<h:inputText id="entreprise" value="#{sheetInformationBusiness.currentSheetInformation.business}" required="true"  />
+							<p:outputLabel value="Rémunération :" for="remuneration" />
+							<h:inputText id="remuneration" value="#{sheetInformationBusiness.currentSheetInformation.remuneration}"  />
+							
+  
+							<p:commandButton value="Ajouter"  
+								action="#{sheetInformationBusiness.saveSheetInformationExperienceProfessionnel(ctpFolders.currentCtp.matricule)}"    
+								update="messages panAjout :ff2:tab" icon="ui-icon-disk"  onclick="#{sheetInformationBusiness.clear()}" > 
+													 
+							</p:commandButton>
+ 
+							<p:commandButton value="Annuler"  
+								 icon="ui-icon-disk" action="#{sheetInformationBusiness.clear()}"  update="panAjout" />
+							  
+				 </h:panelGrid>
+			 </p:panel>
+</h:form>
+</center>
+</p:dialog>
+  
+ 
+ 
+
+ <h:form  id="ff3"  style="margin-top:50px;">		   
+
+<center> 
+<p:dataTable var="car" id="tabl" style="width:70%;" value="#{sheetInformationBean.rechercheStageSelonMatricule(ctpFolders.currentCtp.matricule)}">
+    <f:facet name="header">
+        Stage
+    </f:facet>
+ 
+    <p:column headerText="Dates début">
+        <h:outputText value="#{car.dateStart}" /> 
+    </p:column>
+    
+   <p:column headerText="Dates fin">
+        <h:outputText value="#{car.dateEnd}" />
+    </p:column>
+    
+    <p:column headerText="Postes">
+        <h:outputText value="#{car.post}" />
+    </p:column>
+ 
+    <p:column headerText="Entreprise">
+        <h:outputText value="#{car.business}" />
+    </p:column>
+ 
+    <p:column headerText="Rémunération">
+        <h:outputText value="#{car.remuneration}" />
+    </p:column>
+ 
+    
+</p:dataTable>
+</center>
+<center>
+<p:commandButton value="Ajouter stage"     icon="ui-icon-plus"    onclick="PF(':ff3:dlgAjout').show();" />
+</center>
+</h:form>
+
+ 
+
+  <p:dialog  
+					header="----------------------------------------------- Ajouter-----------------------------------------------"
+					widgetVar=":ff3:dlgAjout" showEffect="explode" hideEffect="bounce"
+					modal="true" resizable="false" appendTo="" >
+					<center>
+		<h:form  id="f4" >		
+		    <p:panel id="panAjouter" style="margin-bottom:10px;">
+		    <p:messages id="mesg" showDetail="true" autoUpdate="true" />
+				 <h:panelGrid columns="2" cellpadding="5">
+							<h:outputText value="Dates début :" for="dateDebut"/>
+							<p:calendar   id="dateDebut" value="#{sheetInformationBusiness.currentSheetInformation.dateStart}" required="true" /> 
+							<p:outputLabel value="Dates fin :" for="dateFin" />
+							<p:calendar  id="dateFin" value="#{sheetInformationBusiness.currentSheetInformation.dateEnd}"  required="true"/> 
+							<p:outputLabel value="Postes :" for="post" />
+							<h:inputText id="post" value="#{sheetInformationBusiness.currentSheetInformation.post}"  required="true"/>
+							<p:outputLabel value="Entreprise :" for="entreprise" />
+							<h:inputText id="entreprise" value="#{sheetInformationBusiness.currentSheetInformation.business}" required="true"  />
+							<p:outputLabel value="Rémunération :" for="remuneration" />
+							<h:inputText id="remuneration" value="#{sheetInformationBusiness.currentSheetInformation.remuneration}"  />
+							
+ 
+							<p:commandButton value="Ajouter"  
+								action="#{sheetInformationBusiness.saveSheetInformationStage(ctpFolders.currentCtp.matricule)}"    
+								update="mesg panAjouter :ff3:tabl" icon="ui-icon-disk"  onclick="#{sheetInformationBusiness.clear()}" > 
+														 
+							</p:commandButton>
+ 
+							<p:commandButton value="Annuler"  
+								 icon="ui-icon-disk" action="#{sheetInformationBusiness.clear()}"  update="panAjouter" />
+				  </h:panelGrid>
+
+			 </p:panel>
+</h:form>
+</center>
+</p:dialog> 
+
+
+
+
+ 
+<h3>Avez-vous utilisé votre SIVP ?<span style="margin-left: 20px;"><p:commandButton value="Oui"  action="#{sheetInformationBusiness.saveSheetInformationQuestion('Avez-vous utilisé votre SIVP ?',ctpFolders.currentCtp.matricule,true)}"      icon="ui-icon-check" /> 
+									</span> <span style="margin-left: 20px;"> <p:commandButton value="Non"  action="#{sheetInformationBusiness.saveSheetInformationQuestion('Avez-vous utilisé votre SIVP ?',ctpFolders.currentCtp.matricule,false)}"      icon="ui-icon-close" /> </span></h3>
+ 
+
+<h3>Etes-vous inscrit ou cotisant CNSS ?<span style="margin-left: 20px;"><p:commandButton value="Oui"  action="#{sheetInformationBusiness.saveSheetInformationQuestion('Etes-vous inscrit ou cotisant CNSS ?',ctpFolders.currentCtp.matricule,true)}"      icon="ui-icon-check" /> 
+									</span> <span style="margin-left: 20px;"> <p:commandButton value="Non"  action="#{sheetInformationBusiness.saveSheetInformationQuestion('Etes-vous inscrit ou cotisant CNSS ?',ctpFolders.currentCtp.matricule,false)}"      icon="ui-icon-close" /> </span></h3>
+ 
+
+
+
+
+
+
+
+
+
+
+
+ <h:form  id="ff4"  style="margin-top:50px;">		   
+
+<center> 
+<p:dataTable var="car" id="tabl" style="width:70%;" value="#{sheetInformationBean.rechercheFormationAcademiqueSelonMatricule(ctpFolders.currentCtp.matricule)}">
+    <f:facet name="header">
+        Formation académique
+    </f:facet>
+ 
+    <p:column headerText="Diplômes">
+        <h:outputText value="#{car.diploma}" /> 
+    </p:column>
+    
+   <p:column headerText="Spécialités">
+        <h:outputText value="#{car.specialty}" />
+    </p:column>
+    
+    <p:column headerText="Etablissements">
+        <h:outputText value="#{car.establishment}" />
+    </p:column>
+ 
+    <p:column headerText="Années">
+        <h:outputText value="#{car.years}" />
+    </p:column>
+    
+</p:dataTable>
+</center>
+<center>
+<p:commandButton value="Ajouter Formation académique"     icon="ui-icon-plus"    onclick="PF(':ff4:dlgAjout').show();" />
+</center>
+</h:form>
+
+ 
+
+  <p:dialog  
+					header="----------------------------------------------- Ajouter-----------------------------------------------"
+					widgetVar=":ff4:dlgAjout" showEffect="explode" hideEffect="bounce"
+					modal="true" resizable="false" appendTo="" >
+					<center>
+		<h:form  id="f5" >		
+		    <p:panel id="panAj" style="margin-bottom:10px;">
+		    <p:messages id="mesgg" showDetail="true" autoUpdate="true" />
+				 <h:panelGrid columns="2" cellpadding="5">
+							<h:outputText value="Diplômes :" for="diploma"/>
+							 <h:inputText id="diploma" value="#{sheetInformationBusiness.currentSheetInformation.diploma}"  required="true"/>
+							<p:outputLabel value="specialty :" for="specialty" />
+							 <h:inputText id="specialty" value="#{sheetInformationBusiness.currentSheetInformation.specialty}"  required="true"/>
+							<p:outputLabel value="Etablissements :" for="Etablissements" />
+							<h:inputText id="Etablissements" value="#{sheetInformationBusiness.currentSheetInformation.establishment}"  required="true"/>
+							<p:outputLabel value="Années :" for="years" />
+							<h:inputText id="years" value="#{sheetInformationBusiness.currentSheetInformation.years}" required="true"  />
+							 
+ 
+							<p:commandButton value="Ajouter"  
+								action="#{sheetInformationBusiness.saveSheetInformationFormationAcademique(ctpFolders.currentCtp.matricule)}"    
+								update="mesgg panAj :ff4:tabl" icon="ui-icon-disk"  onclick="#{sheetInformationBusiness.clear()}" > 
+														 
+							</p:commandButton>
+ 
+							<p:commandButton value="Annuler"  
+								 icon="ui-icon-disk" action="#{sheetInformationBusiness.clear()}"  update="panAj" />
+				  </h:panelGrid>
+
+			 </p:panel>
+</h:form>
+</center>
+</p:dialog> 
+
+
+
+
+
+
+ <h:form  id="ff5"  style="margin-top:50px;">		   
+
+<center> 
+<p:dataTable var="car" id="tabl" style="width:70%;" value="#{sheetInformationBean.rechercheFormationComplementaireSelonMatricule(ctpFolders.currentCtp.matricule)}">
+    <f:facet name="header">
+        Formation complémentaire 
+    </f:facet>
+ 
+    <p:column headerText="Domaines">
+        <h:outputText value="#{car.sector}" /> 
+    </p:column>
+    
+   <p:column headerText="Certificats / Attestations">
+        <h:outputText value="#{sheetInformationBean.changeVariable(car.certificate)}" />
+    </p:column>
+    
+    <p:column headerText="Etablissements">
+        <h:outputText value="#{car.establishment}" />
+    </p:column>
+ 
+    <p:column headerText="Années">
+        <h:outputText value="#{car.years}" />
+    </p:column>
+    
+</p:dataTable>
+</center>
+<center>
+<p:commandButton value="Ajouter Formation complémentaire"     icon="ui-icon-plus"    onclick="PF(':ff5:dlgAjout').show();" />
+</center>
+</h:form>
+
+ 
+
+  <p:dialog  
+					header="----------------------------------------------- Ajouter-----------------------------------------------"
+					widgetVar=":ff5:dlgAjout" showEffect="explode" hideEffect="bounce"
+					modal="true" resizable="false" appendTo="" >
+					<center>
+		<h:form  id="f6" >		
+		    <p:panel id="panAjt" style="margin-bottom:10px;">
+		    <p:messages id="mesge" showDetail="true" autoUpdate="true" />
+				 <h:panelGrid columns="2" cellpadding="5">
+							<h:outputText value="Domaines :" for="sector"/>
+							 <h:inputText id="sector" value="#{sheetInformationBusiness.currentSheetInformation.sector}"  required="true"/>
+							<p:outputLabel value="Certificat/Attestation :" for="certificat" />
+							<p:selectOneMenu id="certificat" value="#{sheetInformationBusiness.currentSheetInformation.certificate}" style="width:220px"> 
+					            <f:selectItem itemLabel="" itemValue="" />  
+					            <f:selectItem itemLabel="Vrai" itemValue="true" />            
+					            <f:selectItem itemLabel="Faux" itemValue="false" />         
+					            </p:selectOneMenu>
+           					 <p:outputLabel value="Etablissements :" for="Etablissements" />
+							<h:inputText id="Etablissements" value="#{sheetInformationBusiness.currentSheetInformation.establishment}"  required="true"/>
+							<p:outputLabel value="Années :" for="years" />
+							<h:inputText id="years" value="#{sheetInformationBusiness.currentSheetInformation.years}" required="true"  />
+							 
+ 
+							<p:commandButton value="Ajouter"  
+								action="#{sheetInformationBusiness.saveSheetInformationFormationComplementaire(ctpFolders.currentCtp.matricule)}"    
+								update="mesge panAjt :ff5:tabl" icon="ui-icon-disk"  onclick="#{sheetInformationBusiness.clear()}" > 
+														 
+							</p:commandButton>
+ 
+							<p:commandButton value="Annuler"  
+								 icon="ui-icon-disk" action="#{sheetInformationBusiness.clear()}"  update="panAjt" />
+				  </h:panelGrid>
+
+			 </p:panel>
+</h:form>
+</center>
+</p:dialog> 
+
+
+
+
+
+
+
+
+ <h:form  id="ff6"  style="margin-top:50px;">		   
+
+<center> 
+<p:dataTable var="car" id="tabl" style="width:70%;" value="#{sheetInformationBean.rechercheAptitudeLanguageSelonMatricule(ctpFolders.currentCtp.matricule)}">
+    <f:facet name="header">
+       Aptitudes en langues
+    </f:facet>
+ 
+    <p:column headerText="Langue">
+        <h:outputText value="#{car.question}" /> 
+    </p:column>
+    <p:column headerText="Niveau">
+    <p:rating  stars="4" cancel="false" readonly="true" value="#{car.vote}"/> 
+			 
+    </p:column>
+   
+  
+    
+</p:dataTable>
+</center>
+<center>
+<p:commandButton value="Ajouter aptitudes en langues"     icon="ui-icon-plus"    onclick="PF(':ff6:dlgAjout').show();" />
+</center>
+</h:form>
+
+ 
+
+  <p:dialog  
+					header="----------------------------------------------- Ajouter-----------------------------------------------"
+					widgetVar=":ff6:dlgAjout" showEffect="explode" hideEffect="bounce"
+					modal="true" resizable="false" appendTo="" >
+					<center>
+		<h:form  id="f7" >		
+		    <p:panel id="panA" style="margin-bottom:10px;">
+		    <p:messages id="mese" showDetail="true" autoUpdate="true" />
+				 <h:panelGrid columns="2" cellpadding="5">
+							 <p:outputLabel value="Langue :" for="Langue" />
+							<p:selectOneMenu id="Langue" value="#{sheetInformationBusiness.currentSheetInformation.question}" style="width:220px"> 
+					            <f:selectItem itemLabel="" itemValue="" />            
+					            <f:selectItem itemLabel="Arabe" itemValue="arabe" />   					            
+					            <f:selectItem itemLabel="Français" itemValue="français" />  					            
+					            <f:selectItem itemLabel="Anglais" itemValue="anglais" />       
+					            </p:selectOneMenu>
+					            <p:outputLabel value="Niveau :" for="niveau" />
+					            <p:rating id="niveau"  stars="4" cancel="false" readonly="false" value="#{sheetInformationBusiness.currentSheetInformation.vote}"/> 
+           					 
+ 
+							<p:commandButton value="Ajouter"  
+								action="#{sheetInformationBusiness.saveSheetInformationAptitudeLanguage(sheetInformationBusiness.currentSheetInformation.question,ctpFolders.currentCtp.matricule,sheetInformationBusiness.currentSheetInformation.vote)}"    
+								update="mese panA :ff6:tabl" icon="ui-icon-disk"  onclick="#{sheetInformationBusiness.clear()}" > 
+														 
+							</p:commandButton>
+ 
+							<p:commandButton value="Annuler"  
+								 icon="ui-icon-disk" action="#{sheetInformationBusiness.clear()}"  update="panA" />
+				  </h:panelGrid>
+
+			 </p:panel>
+</h:form>
+</center>
+</p:dialog> 
+
+
+
+
+
+
+
+
+
+
+
+
+<h:form  id="ff7"  style="margin-top:50px;">		   
+
+<center> 
+<p:dataTable var="car" id="tabl" style="width:70%;" value="#{sheetInformationBean.rechercheVieAssosiativeSelonMatricule(ctpFolders.currentCtp.matricule)}">
+    <f:facet name="header">
+       Vie associative
+    </f:facet>
+ 
+    <p:column headerText="Dates début">
+        <h:outputText value="#{car.dateStart}" /> 
+    </p:column>
+    
+   <p:column headerText="Dates fin">
+        <h:outputText value="#{car.dateEnd}" />
+    </p:column>
+    
+    <p:column headerText="Association/organisme">
+        <h:outputText value="#{car.association}" />
+    </p:column>
+ 
+    <p:column headerText="Secteur d'intervention">
+        <h:outputText value="#{car.sector}" />
+    </p:column>
+ 
+    <p:column headerText="Poste occupé">
+        <h:outputText value="#{car.post}" />
+    </p:column>
+ 
+    
+</p:dataTable>
+</center>
+<center>
+<p:commandButton value="Ajouter vie associative"     icon="ui-icon-plus"    onclick="PF(':ff7:dlgAjout').show();" />
+</center>
+</h:form>
+
+ 
+
+  <p:dialog  
+					header="----------------------------------------------- Ajouter-----------------------------------------------"
+					widgetVar=":ff7:dlgAjout" showEffect="explode" hideEffect="bounce"
+					modal="true" resizable="false" appendTo="" >
+					<center>
+		<h:form  id="f8" >		
+		    <p:panel id="pan" style="margin-bottom:10px;">
+		    <p:messages id="mge" showDetail="true" autoUpdate="true" />
+				 <h:panelGrid columns="2" cellpadding="5">
+							<h:outputText value="Dates début :" for="Debut"/>
+							<p:calendar   id="Debut" value="#{sheetInformationBusiness.currentSheetInformation.dateStart}" required="true" /> 
+							<p:outputLabel value="Dates fin :" for="Fin" />
+							<p:calendar  id="Fin" value="#{sheetInformationBusiness.currentSheetInformation.dateEnd}"  required="true"/> 
+							<p:outputLabel value="Association/organisme :" for="association" />
+							<h:inputText id="association" value="#{sheetInformationBusiness.currentSheetInformation.association}"  required="true"/>
+							<p:outputLabel value="Secteur d'intervention :" for="sect" />
+							<h:inputText id="sect" value="#{sheetInformationBusiness.currentSheetInformation.sector}" required="true"  />
+							<p:outputLabel value="Poste occupé :" for="pst" />
+							<h:inputText id="pst" value="#{sheetInformationBusiness.currentSheetInformation.post}"  />
+							
+ 
+							<p:commandButton value="Ajouter"  
+								action="#{sheetInformationBusiness.saveSheetInformationVieAssosiative(ctpFolders.currentCtp.matricule)}"    
+								update="mge pan :ff7:tabl" icon="ui-icon-disk"  onclick="#{sheetInformationBusiness.clear()}" > 
+														 
+							</p:commandButton>
+ 
+							<p:commandButton value="Annuler"  
+								 icon="ui-icon-disk" action="#{sheetInformationBusiness.clear()}"  update="pan" />
+				  </h:panelGrid>
+
+			 </p:panel>
+</h:form>
+</center>
+</p:dialog> 
+
+
+
+
+<h2>Monitoring Réseau des Entreprises d'Entrainement de Tunisie</h2>
+
+<h3>1.	Depuis combien de temps êtes-vous à la recherche d'un emploi ?</h3>
+<span style="margin-left: 20px;">
+<p:commandButton value="Moins d un an"  action="#{sheetInformationBusiness.saveSheetInformationQuestion('Depuis combien de temps êtes-vous à la recherche d un emploi ?',ctpFolders.currentCtp.matricule,'Moins d un an')}"      icon="ui-icon-check" /> 
+</span> 
+	<span style="margin-left: 20px;">
+ <p:commandButton value="Plus d un an"  action="#{sheetInformationBusiness.saveSheetInformationQuestion('Depuis combien de temps êtes-vous à la recherche d un emploi ?',ctpFolders.currentCtp.matricule,'Plus d un an')}"      icon="ui-icon-check" /> 
+ </span>
+ 
+  
+
+<h3>2.	Par quel moyen avez-vous connu l'existence des entreprises d'entrainement (ee) en Tunisie?</h3>
+
+	<span style="margin-left: 20px;">
+<p:commandButton value="Les médias"  action="#{sheetInformationBusiness.saveSheetInformationQuestion('Par quel moyen avez-vous connu l existence des entreprises d entrainement (ee) en Tunisie?',ctpFolders.currentCtp.matricule,'Par les médias')}"      icon="ui-icon-check" /> 
+</span> 
+	<span style="margin-left: 20px;">
+ <p:commandButton value="Internet"  action="#{sheetInformationBusiness.saveSheetInformationQuestion('Par quel moyen avez-vous connu l existence des entreprises d entrainement (ee) en Tunisie?',ctpFolders.currentCtp.matricule,'Par internet')}"      icon="ui-icon-check" /> 
+ </span>
+ <span style="margin-left: 20px;">
+<p:commandButton value="Un(e) ami(e)"  action="#{sheetInformationBusiness.saveSheetInformationQuestion('Par quel moyen avez-vous connu l existence des entreprises d entrainement (ee) en Tunisie?',ctpFolders.currentCtp.matricule,'Par un(e) ami(e)')}"      icon="ui-icon-check" /> 
+</span> 
+	<span style="margin-left: 20px;">
+ <p:commandButton value="Un événement"  action="#{sheetInformationBusiness.saveSheetInformationQuestion('Par quel moyen avez-vous connu l existence des entreprises d entrainement (ee) en Tunisie?',ctpFolders.currentCtp.matricule,'Par un événement')}"      icon="ui-icon-check" /> 
+ </span>
+<span style="margin-left: 20px;">
+ <p:commandButton value="Autre"  action="#{sheetInformationBusiness.saveSheetInformationQuestion('Par quel moyen avez-vous connu l existence des entreprises d entrainement (ee) en Tunisie?',ctpFolders.currentCtp.matricule,'Autre')}"      icon="ui-icon-check" /> 
+ </span>
+
+
+
+<h3>3.	Réalisez-vous des activités rémunératrices (freelance, projet personnel...) ?  </h3>
+<span style="margin-left: 20px;">
+<p:commandButton value="Oui"  action="#{sheetInformationBusiness.saveSheetInformationQuestion('Réalisez-vous des activités rémunératrices (freelance, projet personnel...) ?',ctpFolders.currentCtp.matricule,true)}"      icon="ui-icon-check" /> 
+</span> 
+ <span style="margin-left: 20px;"> <p:commandButton value="Non"  action="#{sheetInformationBusiness.saveSheetInformationQuestion('Réalisez-vous des activités rémunératrices (freelance, projet personnel...) ?',ctpFolders.currentCtp.matricule,false)}"      icon="ui-icon-close" /> </span>
+
+
+<div style=" margin-bottom: 50px;">
+<h:form id="pp" >
+ <p:messages id="mm" showDetail="true" autoUpdate="true" />
+ <h3>4.	Lors de votre entretien d'embauche, vous a-t-on bien expliqué le fonctionnement et le but d'une ee ?</h3>
+ 
+	<p:inputTextarea rows="1" cols="140"  style="margin:15px 30px 15px 30px;"  readonly="false" value="#{sheetInformationBean.rep1}" required="true" requiredMessage="Champs obligatoire" />
+<h3>5.	Pour quelles raisons avez-vous choisi d'intégrer une ee ?</h3>	
+	 <p:inputTextarea rows="1" cols="140"  style="margin:15px 30px 15px 30px;"  readonly="false" value="#{sheetInformationBean.rep2}" required="true" requiredMessage="Champs obligatoire" />
+<h3>6.	Quels objectifs (projets, perspectives et ambitions) visez-vous en intégrant cette ee?</h3>
+	 <p:inputTextarea rows="1" cols="140"  style="margin:15px 30px 15px 30px;"  readonly="false" value="#{sheetInformationBean.rep3}" required="true"  requiredMessage="Champs obligatoire" />
+<h3>7.	Pour quel poste avez-vous choisi d'être perfectionné/formé ?</h3>
+	 <p:inputTextarea rows="1" cols="140"  style="margin:15px 30px 15px 30px;"  readonly="false" value="#{sheetInformationBean.rep4}" required="true"  requiredMessage="Champs obligatoire" />
+<h3>8.	Quel salaire souhaitez-vous avoir lors de votre future embauche ?</h3>
+
+	 <p:inputTextarea rows="1" cols="140"  style="margin:15px 30px 15px 30px;"  readonly="false" value="#{sheetInformationBean.rep5}" required="true"  requiredMessage="Champs obligatoire" />
+	 
+	 <center>
+	 <p:commandButton style="margin-bottom:50px;" value="valider les réponces"  action="#{sheetInformationBean.saveSinqueQuestion(ctpFolders.currentCtp.matricule)}"   update="mm"   icon="ui-icon-check" />
+	 </center>
+ 	</h:form>
+</div>
+
+ 
+ 
+<center>
+<p:link style="color:red; margin-top:30px;" value="je valide le contenu de fichier et je passe à un autre étape"  outcome="reglementInterneCandidat.xhtml"/>
+</center>
+
+	</body>
+	
+	</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head> 
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+  <meta name="viewport" content="width=device-width" />
+<style>
+@media screen and (max-width: 480px)
+{
+    body
+    {
+        display: block;
+        width: 100%;
+    }
+}
+
+</style>
+</h:head>
+
+
+	<body style="background-color: #10578D;">
+
+	
+  <h:panelGrid columns="2" cellpadding="1" style="  width:50%;   height:50%; margin-left:25%; margin-top:11%;"> 
+  
+ <p:button value=""  outcome="../faces/candidat/ficheDeRenseignementCandidat.xhtml" styleClass="ui-priority-primary"   style='width:330px; height:300px;    border-radius: 70px;  background-image: url("../images/integration.png");   ' title="Intégration dans l'entreprise" />  
+<p:button   value=" " outcome="../faces/candidat/validacCandidat.xhtml" styleClass="ui-priority-primary"   style='width:330px; height:300px; border-radius: 70px;  background-image: url("../images/validac.png");  ' title="Validac" />
+ <p:button   value=" " outcome="../faces/candidat/remplirEvaluationExperienceCandidate.xhtml" styleClass="ui-priority-primary"   style='width:330px; height:300px; border-radius: 70px;  background-image: url("../images/evaluation.png");  ' title="Evaluation Experience" />
+   
+  </h:panelGrid>
+
+ 
+	
+	
+	
+	</body>
+
+	</html>

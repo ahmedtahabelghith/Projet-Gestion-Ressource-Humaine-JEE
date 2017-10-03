@@ -1,0 +1,42 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head> 
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+   
+</h:head>
+
+
+	<body style="background-color: #10578D;  ">
+
+ <div> 
+    <h:form id="form"> 
+ 
+			   
+			  
+ 
+<h:panelGrid columns="4" cellpadding="1" style="  width:100%;margin-bottom:50px;background-color: #FFFFFF; "> 
+<p:button  value="Consulter tableau d'état"  outcome="tableauEtatCTP.xhtml"  icon="ui-icon-calculator" style="  "  />
+ <p:button  value="Consulter les dossiers"   outcome="consulterDossierCTP.xhtml" icon="ui-icon-copy" style="     "  />
+ <p:button  value="Statistiques : Courbes"  outcome="statistiqueCourbe.xhtml"   icon="ui-icon-image"  style="   " />
+ <p:button  value="Statistiques : Tableaux" outcome="statistiqueTableaux.xhtml"  icon="ui-icon-grip-solid-horizontal"  style="   " />
+  </h:panelGrid>
+
+  <div >
+	  <ui:insert name="body"></ui:insert>						 					  
+ </div>
+    
+    </h:form> 
+    
+</div>
+ 
+	</body>	
+	</html>
+ 
+    
+  

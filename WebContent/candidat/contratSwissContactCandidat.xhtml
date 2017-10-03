@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head> 
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+  
+<style type="text/css">
+.ui-steps .ui-steps-item {
+    width: 20%;
+}
+ 
+.ui-state-highlight {
+    text-shadow: none !important;
+}
+ 
+.ui-steps.custom {
+    margin-bottom: 30px;
+}
+ 
+.ui-steps.custom .ui-steps-item .ui-menuitem-link {
+    height: 10px;
+    padding: 0 1em;
+}
+ 
+.ui-steps.custom .ui-steps-item .ui-steps-number {
+    background-color: red;
+    color: #FFFFFF;
+    display: inline-block;
+    width: 30px;
+    border-radius: 10px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+} 
+  	p,h4,b{color:#000000;}
+  
+  </style>
+</h:head>
+ 
+ 
+ 
+		
+<h:body   >
+  
+<p:steps activeIndex="4" styleClass="custom" readonly="false">
+    <p:menuitem value="Fiche de renseignements" url="ficheDeRenseignementCandidat.xhtml"/>
+    <p:menuitem value="Règlement interne" url="reglementInterneCandidat.xhtml"/>
+    <p:menuitem value="Autorisation de droit à l’image" url="autorisationDroitImageCandidat.xhtml"/>
+    <p:menuitem value="Note de REET" url="noteReetCandidat.xhtml"/>   
+    <p:menuitem value="Contrat de travail" url="contratSwissContactCandidat.xhtml"/>
+   
+</p:steps>
+<br/><br/><br/>
+<p:graphicImage value="../images/elan.png" style="width:190px; height:130px;  display: inline-block; float:left; margin-left:100px;"/>
+<p:graphicImage value="../images/swisscontact.jpg" style="width:190px; height:130px;   display: inline-block; float:right; margin-right:100px;"/>
+ 
+<br/><br/><br/>
+	  <center style="color: red;font-size:24px; font-weight:   bold; margin: 90px 0px 30px 0px;">CONTRAT SWISSCONTACT</center>
+	  
+	  <div style="  color:red;  font-size: 15px; margin-top: 50px;  ">
+	  		<h3>ENTRE LES SOUSSIGNES:</h3>  
+	  </div>
+	  <div style="  color:#FFFFFF; margin-left: 50px; width: 96%;  font-size: 15px;  ">
+	<h4><b>SWISSCONTACT</b>, affiliation à la CNSS N°321743-91 ayant son siège social au A.1.1 Immeuble Emeraude Avenue de la Bourse, les jardins du Lac 1053 Tunis, représentée par M. Yves Matthijs en qualité de country manager et M. Yosri TOUMI en qualité de directeur d’ELAN et d'employeur.</h4>
+
+<p><b>M/Mme.</b> #{ctpFolders.currentCtp.candidates.lastName} #{ctpFolders.currentCtp.candidates.firstName}	</p>
+<p><b>Date de naissance :</b>#{ctpFolders.currentCtp.candidates.birthday}</p>
+<p><b>Nationalité :</b> #{ctpFolders.currentCtp.candidates.nationality}</p>
+<p><b>Adresse :</b> #{ctpFolders.currentCtp.candidates.address}</p>
+<p><b>CIN N° :</b>#{ctpFolders.currentCtp.candidates.cin} <b>délivrée le</b> #{ctpFolders.currentCtp.candidates.cinIssued} En qualité de collaborateur temporaire en perfectionnement (CTP) sous un statut bénévole à  SWISSCONTACT.</p>
+
+ </div>
+
+ <div style="  color:red;  font-size: 15px; ">
+	  		<h3>IL A ETE CONVENU CE QUI SUIT : </h3> 
+	</div>  		
+ <div style="  color:#FFFFFF; margin-left: 50px; width: 96%;  font-size: 15px; ">	  		
+<h4  >ARTICLE 1: OBJET</h4>
+<p  >M/Mme. <strong>#{ctpFolders.currentCtp.candidates.lastName} #{ctpFolders.currentCtp.candidates.firstName}</strong> est engagée pour une durée déterminée de 3 mois par SWISSCONTACT en qualité de collaborateur temporaire en perfectionnement sous un statut bénévole de chargée de financier.
+Elle exercera ses fonctions sous la responsabilité de Mr.Chaker Ouerda au siège d’ELAN sis à Charguia 2, rue des entrepreneurs. </p>
+
+<h4  >ARTICLE 2: VALIDITE DU CONTRAT</h4>
+<p  >Le présent contrat est conclu pour une durée déterminée du 08/08/2016 jusqu'à 07/11/2016, soit d'une durée de trois mois (3 mois).
+Le CTP sera libre de tout engagement à part le secret professionnel en cas d’embauche effective au cours de ces 3 mois.</p>
+
+<h4  >ARTICLE 3: REMUNERATION</h4>
+<p  >Cet emploi est non rémunéré. Une indemnité de transport et de repas d'un montant de  10 dinars lui sera attribuée par jour travaillé. </p>
+
+<h4  >ARTICLE 4: DUREE DE TRAVAIL</h4>
+<p  >Le CTP devra assurer quarante heures (40H) de travail par semaine, de Lundi au Vendredi selon les horaires en vigueur au niveau de l’entreprise ELAN.</p>
+
+<h4  >ARTICLE 5: CAHIER DES CHARGES</h4>
+<p  >Le descriptif de poste annexé fait partie intégrante du présent contrat. Ce descriptif de poste ne concerne que les éléments centraux du travail à accomplir. Il pourra y être ajouté des éléments, d'un commun accord entre les deux parties, sans toutefois que cela n'en modifie les principes fondamentaux.
+Une révision fondamentale du cahier des charges entrainerait l'invalidité du présent contrat.</p>
+<br/><br/><br/>
+<h4  >ARTICLE 6: OBLIGATIONS</h4>
+<p  >Les parties s'engagent à respecter les dispositions du règlement intérieur de SWISSCONTACT et d’ELAN, ainsi que le code de bonne conduite de Swisscontact, partie intégrante du contrat de travail.<br/>
+Le CTP s'oblige à conserver la plus grande des discrétions sur toutes les informations et données dont il aurait eu connaissance à l'occasion de l'exercice de ses fonctions.<br/>
+Il s'abstient à toute action pouvant porter préjudice à son employeur ou nuire à ses intérêts professionnels et économiques.<br/>
+Le CTP  s'engage à se conformer aux instructions qui lui seront donnés par ses supérieurs hiérarchiques.<br/>
+Il s'engage à prendre soin du matériel qui lui sera confié, et il assume la responsabilité de la disparition ou l'usure de son matériel.<br/>
+Les gains accessoires et les activités accessoires doivent être signalés sans délais à l'employeur.</p>
+
+<h4  >ARTICLE 7: DONNEES PERSONNELLES</h4>
+<p  >Le CTP accepte de communiquer toutes les données personnelles nécessaires. Il autorise le traitement de ses données par l’employeur.<br/>
+Le CTP s’engage à communiquer à son employeur, sans délai, toute modification de ses données personnelles et ce, jusqu’à un délai d’un an après l’achèvement du présent contrat.</p>
+
+<h4  >ARTICLE 8: FIN ET SUSPENSION DU CONTRAT</h4>
+<p  >Le présent contrat prend fin dans les cas qui suivent:<br/>
+1/ Par accord des parties.<br/>
+2/ En cas de manquement du CTP à ses obligations selon l'article 6 du présent contrat.<br/>
+3/ Par la faute lourde du CTP dûment constatée et justifiée.<br/>
+4/ Arrivée à échéance.<br/>
+5/ En cas d'embauche effective par un employeur, après en avoir informé l’employeur. Un certificat relatif à la durée et aux tâches effectuées lui sera décerné en conséquence. 
+</p>
+
+<h4  >Article 9 : LITIGE</h4>
+<p>En cas de litige, les deux parties prennent l’engagement de négocier à l’amiable puis de recourir à un arbitrage avant d’entamer toute action juridique. La procédure d’arbitrage peut être exercée par un tiers, après tentatives de conciliation effectuées par le Réseau des Entreprises d’Entrainement de Tunisie (REET). </p>
+
+<h4  >ARTICLE 10 : DISPOSITIONS SPECIALES LIEES AU STATUT DE COLLABORATEURS TEMPORAIRES BENEVOLES EN PERFECTIONNEMENT </h4>
+<p  >Tout CTP, à l’expiration de son contrat, exige de son employeur une attestation de travail unique contenant exclusivement la date de son entrée, celle de sa sortie, la nature de l’emploi.<br/>
+A terme de 52 jours effectifs travaillés, REET est tenu de délivrer au CTP qui quitte l’entreprise d’entrainement un certificat de formation professionnelle unique faisant état des compétences techniques et comportementales acquises depuis son entrée dans l’entreprise.<br/>
+Le CTP s’engage à informer son employeur de sa situation professionnelle après sa formation et son séjour au sein de l’entreprise d’entrainement ELAN.<br/>
+L’employeur s’engage à laisser le CTP libre de postuler et de se présenter à des entretiens d’embauche.<br/>
+L’employeur s’engage à assurer son CTP jusqu’au fin de son contrat.  </p>    
+
+<h4>ARTICLE 11 : DISPOSITIONS COMPLEMENTAIRES </h4>
+<p  >Le CTP reconnait qu’aucun autre avantage ni indemnité de quelque nature que ce soit exceptée si mentionné explicitement dans le présent contrat, ni aucune promesse de renouvellement ou d’extension du contrat de travail ou du cahier des charges, n’ont été formulés.</p>
+<br/><br/><br/><br/>
+<h4  >ARTICLE 12: DISPOSITIONS DIVERSES</h4>
+<p >M/Mme. <b>#{ctpFolders.currentCtp.candidates.lastName} #{ctpFolders.currentCtp.candidates.firstName}</b> déclare détenir une licence appliquée en Ingénierie Economique et Financière, et être libre de tout engagement. <br/>
+M/Mme. <b>#{ctpFolders.currentCtp.candidates.lastName} #{ctpFolders.currentCtp.candidates.firstName}</b> déclare n'exercer à la date de conclusion du présent contrat aucune activité professionnelle et s'engage à faire connaitre dans les plus brefs délais à SWISSCONTACT et au directeur d’ELAN tout changement dans sa situation personnelle.<br/>
+M/Mme. <b>#{ctpFolders.currentCtp.candidates.lastName} #{ctpFolders.currentCtp.candidates.firstName}</b>  déclare été informée de l’objectif de son emploi temporaire et du fonctionnement des entreprises d’entrainement en Tunisie.<br/>
+Les parties ont été informées de l'absence de tout empêchement légal à la rédaction présent contrat.<br/>
+Fait à Tunis, le #{ctpFolders.currentCtp.hiringDate}
+</p>
+ 
+ </div>
+ 
+ <h:form>
+ 
+ 
+  <center>
+	 <p:commandButton style="margin-bottom:50px;" value="Valider"  action="#{ctpFoldersBean.miseAJourCTP(ctpFolders.currentCtp)}"     icon="ui-icon-check" />
+	 </center>
+   </h:form>
+</h:body>
+		
+		 
+	 
+		</html>

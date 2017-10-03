@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head> 
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+</h:head>
+
+<ui:composition template="menuCoach.xhtml">
+
+		<ui:define name="body">
+
+ 
+	 
+  <h:form >
+  <center>
+    <p:dataTable id="tbl"   var="CTP" value="#{ctpFoldersBean.listCtpSortant()}"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+                 paginator="true" rows="18" style="margin-bottom:20px ; width:98%;">
+ 
+        <f:facet name="">         
+        Tableau d'état des CTP sortant        
+            <h:commandLink style="float: right;">
+                <p:graphicImage value="../images/excel.png" width="24"/>
+                <p:dataExporter type="xls" target="tbl" fileName="cars" />
+            </h:commandLink> 
+            <h:commandLink style="float: right;">
+                <p:graphicImage value="../images/pdf.png" width="24"/>
+                <p:dataExporter type="pdf" target="tbl" fileName="cars"/>
+            </h:commandLink> 
+            <h:commandLink style="float: right;">
+                <p:graphicImage value="../images/csv.png" width="24"/>
+                <p:dataExporter type="csv" target="tbl" fileName="cars" />
+            </h:commandLink> 
+            <h:commandLink style="float: right;">
+                <p:graphicImage value="../images/xml.png" width="24"/>
+                <p:dataExporter type="xml" target="tbl" fileName="cars" />
+            </h:commandLink>
+        </f:facet> 
+ 		 <p:column filterBy="#{CTP.matricule}" style="width:100px;">
+            <f:facet name="header">
+                <h:outputText value="Matricule" />
+            </f:facet>
+            <h:outputText value="#{CTP.matricule}" />
+        </p:column>        
+         <p:column filterBy="#{CTP.candidates.firstName}" style="width:130px;">
+            <f:facet name="header">
+                <h:outputText value="Nom_et_Prénom" />
+            </f:facet>
+            <h:outputText value="#{CTP.candidates.firstName} #{CTP.candidates.lastName}" />
+        </p:column>
+         <p:column filterBy="#{CTP.candidates.address}" style="width:100px;">
+            <f:facet name="header">
+                <h:outputText value="Adresse" />
+            </f:facet>
+            <h:outputText value="#{CTP.candidates.address}" />
+        </p:column >
+        <p:column style="width:100px;" filterBy="#{CTP.candidates.additionalCandidates.post}">
+            <f:facet name="header">
+                <h:outputText value="Poste" />
+            </f:facet>
+            <h:outputText value="#{CTP.candidates.additionalCandidates.post}" />
+        </p:column>        
+         <p:column filterBy="#{ctpFoldersBean.changeVariableCertifie(CTP.certificat)}"  style="width:120px;" >
+            <f:facet name="header" >
+                <h:outputText value="Cértifié" />
+            </f:facet>
+            <h:outputText value="#{ctpFoldersBean.changeVariableCertifie(CTP.certificat)}" />
+        </p:column>      
+        <p:column  style="width:53px;" >
+            <f:facet name="header">
+                <h:outputText value="Genre"  />
+            </f:facet>
+            <h:outputText value="#{ctpFoldersBean.changeSexe(CTP.candidates.sexe)}" />
+        </p:column>           
+            <p:column style="width:70px;" >
+            <f:facet name="header">
+                <h:outputText value="N°Tél" />
+            </f:facet>
+            <h:outputText value="#{CTP.candidates.tel}" />
+        </p:column>
+     <p:column style="width:92px;"   >
+            <f:facet name="header">
+                <h:outputText value="Date d'entrée" />
+            </f:facet>
+            <h:outputText value="#{CTP.hiringDate}" />
+        </p:column>
+         <p:column style="width:92px;">
+            <f:facet name="header"   >
+                <h:outputText value="Date fin contrat" />
+            </f:facet>
+            <h:outputText value="#{CTP.endContractDate}" />
+        </p:column>
+            <p:column style="width:92px;" >
+            <f:facet name="header"  >
+                <h:outputText value="Date de sortie" />
+            </f:facet>
+            <h:outputText value="#{CTP.exitDate}" />
+        </p:column>
+            <p:column style="width:92px;" >
+            <f:facet name="header">
+                <h:outputText value="Durée en jour" />
+            </f:facet>
+            <h:outputText value="" />
+        </p:column>           
+            <p:column style="width:110px;" >
+            <f:facet name="header">
+                <h:outputText value="Situation" />
+            </f:facet>
+            <h:outputText value="#{CTP.ctpSituation}" />
+        </p:column>
+    </p:dataTable>
+  </center>
+</h:form>
+     
+      
+</ui:define>
+</ui:composition>
+	</html>

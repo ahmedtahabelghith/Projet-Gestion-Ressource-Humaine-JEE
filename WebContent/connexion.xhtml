@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head> 
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+  <meta name="viewport" content="width=device-width" />
+<style>
+@media screen and (max-width: 480px)
+{
+    body
+    {
+        display: block;
+        width: 100%;
+    }
+}
+
+</style>
+</h:head>
+
+
+	<body style="background-color: #10578D;">
+
+	
+  <h:panelGrid columns="2" cellpadding="2" style="  width:50%;   height:100%; margin-left:25%;"> 
+  
+ <p:commandButton value=""  onclick="PF('dlg3').show();"  styleClass="ui-priority-primary"   style='width:330px; height:300px;    border-radius: 70px; background-image: url("images/Rh.jpg");  ' title="Responsable ressources humaines" />  
+<p:commandButton   value=""   onclick="PF('dlg4').show();" styleClass="ui-priority-primary"   style='width:330px; height:300px; border-radius: 70px; background-image: url("images/candidat.jpg");   ' title="Candidature" />
+ <p:commandButton  value=""   onclick="PF('dlg5').show();" styleClass="ui-priority-primary"  style='width:330px; height:300px;  border-radius: 70px;background-image: url("images/visiteur.jpg");' title="Visiteur" />
+ <p:commandButton  value=""   onclick="PF('dlg6').show();" styleClass="ui-priority-primary"  style='width:330px; height:300px;  border-radius: 70px;background-image: url("images/coach.jpg");' title="Coach" />
+  </h:panelGrid>
+
+
+<p:dialog header="Connexion" widgetVar="dlg3" showEffect="explode" hideEffect="explode" height="300"  width="600"  resizable="false" style=" border-radius: 20px;">
+   <h:form  method="post" >
+    <p:panel id="panel" style="height:285px;  ">
+ 		<div style="height:60px;">
+        <p:messages id="msgs" />
+        </div>
+  <center>
+  <div style="margin-top:5px;">
+        <h:panelGrid columns="3" cellpadding="5"  >
+            <p:outputLabel for="Login" value="Login:" />
+            
+            <p:inputText id="Login"  label="Login" value="#{connexion.login}" >
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="Login" display="icon" />
+ 
+            <p:outputLabel for="Password" value="Password:" />
+           
+    
+ <p:password id="Password"  feedback="true"  required="true" value="#{connexion.mdp}">
+  <f:validateLength minimum="3" />
+  	<p:ajax update="msgPassword" event="keyup"   />
+  </p:password>
+                          
+                    
+   <p:message for="Password" id="msgPassword" display="icon" />
+     </h:panelGrid>
+          <p:commandButton value="Connexion" action="#{connexion.connexionUser('RRH')}" type="submit" update="panel"  icon="ui-icon-check" style="margin:20px 0px 0px 50px;" />
+	</div>
+</center>
+      
+ 
+    </p:panel>
+     </h:form>
+	
+	</p:dialog> 
+	
+	
+	
+	
+	
+	
+	
+	<p:dialog header="Connexion" widgetVar="dlg4" showEffect="explode" hideEffect="explode" height="300"  width="600"  resizable="false" style=" border-radius: 20px;">
+   <h:form>
+    <p:panel id="panel" style="height:285px;  ">
+ 		<div style="height:60px;">
+        <p:messages id="msgs" />
+        </div>
+  <center>
+  <div style="margin-top:5px;">
+        <h:panelGrid columns="3" cellpadding="5"  >
+            <p:outputLabel for="Login" value="Login:" />
+            
+            <p:inputText id="Login" value="#{connexion.login}" label="Login" >
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="Login" display="icon" />
+ 
+            <p:outputLabel for="Password" value="Password:" />
+           
+    
+ <p:password id="Password"  feedback="true"  required="true" value="#{connexion.mdp}">
+  <f:validateLength minimum="3" />
+  	<p:ajax update="msgPassword" event="keyup"   />
+  </p:password>
+                          
+                    
+   <p:message for="Password" id="msgPassword" display="icon" />
+     </h:panelGrid>
+          <p:commandButton value="Connexion" action="#{connexion.connexionUser('candidate')}" update="panel"  icon="ui-icon-check" style="margin:20px 0px 0px 50px;" />
+	</div>
+</center>
+      
+ 
+    </p:panel>
+     </h:form>
+	
+	</p:dialog> 
+	
+	
+	
+	
+	
+	
+	
+	
+	<p:dialog header="Connexion" widgetVar="dlg5" showEffect="explode" hideEffect="explode" height="300"  width="600"  resizable="false" style=" border-radius: 20px;">
+   <h:form>
+    <p:panel id="panel" style="height:285px;  ">
+ 		<div style="height:60px;">
+        <p:messages id="msgs" />
+        </div>
+  <center>
+  <div style="margin-top:5px;">
+        <h:panelGrid columns="3" cellpadding="5"  >
+            <p:outputLabel for="Login" value="Login:" />
+            
+            <p:inputText id="Login" value="#{connexion.login}"  label="Login" >
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="Login" display="icon" />
+ 
+            <p:outputLabel for="Password" value="Password:" />
+           
+    
+ <p:password id="Password"  feedback="true"  required="true" value="#{connexion.mdp}">
+  <f:validateLength minimum="3" />
+  	<p:ajax update="msgPassword" event="keyup"   />
+  </p:password>
+                          
+                    
+   <p:message for="Password" id="msgPassword" display="icon" />
+     </h:panelGrid>
+          <p:commandButton value="Connexion" action="#{connexion.connexionUser('visitor')}" update="panel"  icon="ui-icon-check" style="margin:20px 0px 0px 50px;" />
+	</div>
+</center>
+      
+ 
+    </p:panel>
+     </h:form>
+	
+	</p:dialog> 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<p:dialog header="Connexion" widgetVar="dlg6" showEffect="explode" hideEffect="explode" height="300"  width="600"  resizable="false" style=" border-radius: 20px;">
+   <h:form>
+    <p:panel id="panel" style="height:285px;  ">
+ 		<div style="height:60px;">
+        <p:messages id="msgs" />
+        </div>
+  <center>
+  <div style="margin-top:5px;">
+        <h:panelGrid columns="3" cellpadding="5"  >
+            <p:outputLabel for="Login" value="Login:" />
+            
+            <p:inputText id="Login" value="#{connexion.login}" label="Login" >
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="Login" display="icon" />
+ 
+            <p:outputLabel for="Password" value="Password:" />
+           
+    
+ <p:password id="Password"  feedback="true"  required="true" value="#{connexion.mdp}">
+  <f:validateLength minimum="3" />
+  	<p:ajax update="msgPassword" event="keyup"   />
+  </p:password>
+                          
+                    
+   <p:message for="Password" id="msgPassword" display="icon" />
+     </h:panelGrid>
+          <p:commandButton value="Connexion" action="#{connexion.connexionUser('coach')}" update="panel"  icon="ui-icon-check" style="margin:20px 0px 0px 50px;" />
+	</div>
+</center>
+      
+ 
+    </p:panel>
+     </h:form>
+	
+	</p:dialog> 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</body>
+
+	</html>

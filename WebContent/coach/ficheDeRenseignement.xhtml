@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head> 
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+ 
+</h:head>
+ 
+ 
+
+<h:body style="background-color: #10578D;   ">
+
+<div style="background-color: #FFFFFF;  ">
+<p:graphicImage value="../images/reet.png" style="width:550px; height:130px; margin-left:250px;  display: inline-block;    "/>
+<p:graphicImage value="../images/elan.png" style="width:230px; height:190px; margin-left:100px; display: inline-block; "/>
+
+<div style="border:2px solid #000000; display: inline-block; height: 50px; width: 250px; float: right;margin-top: 30px; margin-right: 30px;  ">
+	<span style="margin-left: 20px; ">      Date de sortie : ..............</span><br/>
+	<span style="margin-left: 20px;">      Code d'identification : ..............</span>
+</div>
+<center style="color: #000000;font-size:40px; font-weight:   bold; margin: 30px 0px 30px 0px;">Fiche de renseignements</center>
+
+ 
+<div style="border : 1px solid #000000; width: 80%; margin: 30px 0px 30px 130px; line-height:30px; ">
+	<div style="margin: 30px 0px 30px 20px;">
+	<center>
+	<h4>
+Cette fiche de renseignements doit être remplie obligatoirement par le candidat lui-même et avec le plus de précision et d'attention possibles.
+	</h4>
+	</center>
+	</div>
+
+</div>
+  
+
+<div style="border : 2px solid #000000; width: 97%; margin: 30px 0px 10px 20px; line-height:15px;   ">
+	<div style="margin: 30px 0px 30px 20px;  ">
+		
+	<h3>Identité et contact</h3>
+	<div style="margin-left: 50px; margin-bottom: 50px;">
+	<h4>Nom et Prénom : #{ctpFolders.currentCtp.candidates.lastName} #{ctpFolders.currentCtp.candidates.firstName}</h4>
+	<h4>Sexe : <span style="margin-left: 20px;"> H  <p:selectBooleanCheckbox  disabled="true"  value="#{ctpFoldersBean.sexeHomme(ctpFolders.currentCtp.candidates.sexe)}"  /> </span> <span style="margin-left: 20px;"> F  <p:selectBooleanCheckbox  disabled="true" value="#{ctpFoldersBean.sexeFemme(ctpFolders.currentCtp.candidates.sexe)}" /></span></h4>
+	<h4>Adresse : #{ctpFolders.currentCtp.candidates.address}</h4>
+	<h4>N° Tél : #{ctpFolders.currentCtp.candidates.tel}</h4>
+	<h4>E-mail : #{ctpFolders.currentCtp.candidates.email} </h4>
+	<h4>Date et lieu de naissance : #{ctpFolders.currentCtp.candidates.birthday}</h4>  
+	<h4>Nationalité(s): #{ctpFolders.currentCtp.candidates.nationality}</h4>
+	<h4>CIN n°: #{ctpFolders.currentCtp.candidates.cin}    Délivrée le : #{ctpFolders.currentCtp.candidates.cinIssued}</h4>          
+	<h4>Statut matrimonial : #{ctpFolders.currentCtp.candidates.familySituation}</h4>
+	       <h4> Enfants à charges : #{ctpFolders.currentCtp.candidates.childNumber} Enfants.</h4>
+	</div>
+	
+	<h3>Expérience professionnelle</h3>
+	<div style="margin-left: 50px ; margin-bottom: 50px;">
+		
+		<center>
+				<p:dataTable var="var" value="#{ctpFoldersBean.listInformationSelonExperienceProfessionnelle(ctpFolders.currentCtp.matricule)}">
+			    <p:column headerText="Dates">
+			        <h:outputText value="#{var.dateStart}" /> au <h:outputText value="#{var.dateEnd}" /> 
+			    </p:column>
+			 
+			    <p:column headerText="Postes">
+			        <h:outputText value="#{var.post}" />
+			    </p:column>
+			 
+			    <p:column headerText="Entreprises">
+			        <h:outputText value="#{var.business}" />
+			    </p:column>
+			 
+			    <p:column headerText="Rémunération">
+			        <h:outputText value="#{var.remuneration}" />
+			    </p:column>
+			</p:dataTable>
+ 
+		</center>
+		
+		
+	</div>
+	
+	
+	<h3>Stages</h3>
+	<div style="margin-left: 50px ; margin-bottom: 50px;">
+		
+		<center>
+				<p:dataTable var="var" value="#{ctpFoldersBean.listInformationSelonStage(ctpFolders.currentCtp.matricule)}">
+			    <p:column headerText="Dates">
+			        <h:outputText value="#{var.dateStart}" /> au <h:outputText value="#{var.dateEnd}" /> 
+			    </p:column>
+			 
+			    <p:column headerText="Postes">
+			        <h:outputText value="#{var.post}" />
+			    </p:column>
+			 
+			    <p:column headerText="Entreprises">
+			        <h:outputText value="#{var.business}" />
+			    </p:column>
+			 
+			    <p:column headerText="Rémunération">
+			        <h:outputText value="#{var.remuneration}" />
+			    </p:column>
+			</p:dataTable>
+		</center>		
+		</div>
+		 
+<h3>Avez-vous utilisé votre SIVP ?</h3>
+<div style="margin-left: 50px ; margin-bottom: 50px;">
+	Réponse : <b>#{ctpFoldersBean.changeVariable(ctpFoldersBean.listInformationSelontypeQuestion(ctpFolders.currentCtp.matricule).get(0).reponce)}</b>	   
+</div>
+<h3>Etes-vous inscrit ou cotisant CNSS ? </h3>
+	<div style="margin-left: 50px ; margin-bottom: 50px;">
+	Réponse : <b>#{ctpFoldersBean.changeVariable(ctpFoldersBean.listInformationSelontypeQuestion(ctpFolders.currentCtp.matricule).get(1).reponce)}</b>	   
+</div>
+ 
+
+
+<h3>Formation académique</h3>
+	<div style="margin-left: 50px ; margin-bottom: 50px;">
+		
+		<center>
+				<p:dataTable var="var" value="#{ctpFoldersBean.listInformationSelonFormationAcademique(ctpFolders.currentCtp.matricule)}">
+			    <p:column headerText="Diplôme">
+			        <h:outputText value="#{var.diploma}" />     
+			    </p:column>
+			 
+			    <p:column headerText="Spécialités">
+			        <h:outputText value="#{var.specialty}" />
+			    </p:column>
+			 
+			    <p:column headerText="Etablissements">
+			        <h:outputText value="#{var.establishment}" />
+			    </p:column>
+			 
+			    <p:column headerText="Années">
+			        <h:outputText value="#{var.years}" />
+			    </p:column>
+			</p:dataTable>
+
+		</center>
+		
+		</div>
+
+
+
+<h3>Formation complémentaire</h3>
+	<div style="margin-left: 50px ; margin-bottom: 50px;">
+		
+		<center>
+				<p:dataTable var="var" value="#{ctpFoldersBean.listInformationSelonFormationComplementaire(ctpFolders.currentCtp.matricule)}">
+			    <p:column headerText="Domaine">
+			        <h:outputText value="#{var.sector}" />     
+			    </p:column>
+			 
+			    <p:column headerText="Années">
+			        <h:outputText value="#{var.years}" />
+			    </p:column>
+			 
+			    <p:column headerText="Etablissements">
+			        <h:outputText value="#{var.establishment}" />
+			    </p:column>
+			 
+			    <p:column headerText="Certificat/Attestation">
+			        <h:outputText value="#{ctpFoldersBean.changeVariable(var.certificate)}" />
+			    </p:column>
+			</p:dataTable>
+
+		</center>
+		
+		</div>
+
+
+
+<h3>Aptitudes en languages</h3>
+	<div style="margin-left: 50px ; margin-bottom: 50px;">
+		
+		 
+			 
+			 <table>
+				<tr> 
+			       <td><h4>Arabe</h4></td> 
+			       <td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.listInformationSelonAptitudeLanguageArabe(ctpFolders.currentCtp.matricule)}"/></td>
+			
+			 
+				<td> <h4 style="margin-left: 70px;">Français</h4></td>
+				<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.listInformationSelonAptitudeLanguageFrancais(ctpFolders.currentCtp.matricule)}"/> </td>
+			 
+			<td> <h4 style="margin-left: 70px;">Anglais</h4></td>
+			<td><p:rating  stars="4" cancel="false"  style="margin-left:100px; " readonly="true" value="#{ctpFoldersBean.listInformationSelonAptitudeLanguageAnglais(ctpFolders.currentCtp.matricule)}"/> </td>
+			</tr>
+			</table>
+		 
+		
+		</div>
+	
+	
+	
+	
+<h3>Vie associative</h3>
+	<div style="margin-left: 50px ; margin-bottom: 50px;">
+		
+		<center>
+				<p:dataTable var="var" value="#{ctpFoldersBean.listInformationSelonVieAssociative(ctpFolders.currentCtp.matricule)}">
+			    <p:column headerText="Durée">
+			        <h:outputText value="#{var.dateStart}" /> au <h:outputText value="#{var.dateEnd}" />    
+			    </p:column>
+			 
+			    <p:column headerText="Association/organisme">
+			        <h:outputText value="#{var.association}" />
+			    </p:column>
+			 
+			    <p:column headerText="Secteur d'intervention">
+			        <h:outputText value="#{var.sector}" />
+			    </p:column>
+			 
+			    <p:column headerText="Poste occupé">
+			        <h:outputText value="#{var.post}" />
+			    </p:column>
+			</p:dataTable>
+
+		</center>
+		
+		</div>
+
+
+<h2>Monitoring Réseau des Entreprises d'Entrainement de Tunisie</h2>
+
+<h3>1.	Depuis combien de temps êtes-vous à la recherche d'un emploi ?</h3>
+		<div style="margin-left: 50px ; margin-bottom: 50px;">
+		Réponse : <b>#{ctpFoldersBean.listInformationSelontypeQuestion(ctpFolders.currentCtp.matricule).get(2).reponce}</b>
+		</div>
+
+<h3>2.	Par quel moyen avez-vous connu l'existence des entreprises d'entrainement (ee) en Tunisie?</h3>
+		<div style="margin-left: 50px ; margin-bottom: 50px;">
+			Réponse : <b>#{ctpFoldersBean.listInformationSelontypeQuestion(ctpFolders.currentCtp.matricule).get(3).reponce}</b>	   
+		</div>
+
+
+<h3>3.	Lors de votre entretien d'embauche, vous a-t-on bien expliqué le fonctionnement et le but d'une ee ?</h3>
+		<div style="margin-left: 50px ; margin-bottom: 50px;">
+			Réponse : <b>#{ctpFoldersBean.listInformationSelontypeQuestion(ctpFolders.currentCtp.matricule).get(5).reponce}</b>	   		   
+		</div>
+
+<h3>4.	Pour quelles raisons avez-vous choisi d'intégrer une ee ?</h3>
+		<div style="margin-left: 50px ; margin-bottom: 50px;">
+		Réponse : <b>#{ctpFoldersBean.listInformationSelontypeQuestion(ctpFolders.currentCtp.matricule).get(6).reponce}</b>	   		  
+		</div>
+		
+		
+<h3>5.	Quels objectifs (projets, perspectives et ambitions) visez-vous en intégrant cette ee?</h3>
+		<div style="margin-left: 50px ; margin-bottom: 50px;">
+		 Réponse : <b>#{ctpFoldersBean.listInformationSelontypeQuestion(ctpFolders.currentCtp.matricule).get(7).reponce}</b>	   
+		 </div>
+		
+		
+<h3>6.	Pour quel poste avez-vous choisi d'être perfectionné/formé ?</h3>
+		<div style="margin-left: 50px ; margin-bottom: 50px;">
+		Réponse : <b>#{ctpFoldersBean.listInformationSelontypeQuestion(ctpFolders.currentCtp.matricule).get(8).reponce}</b>	   				  
+		</div>
+		
+		
+<h3>7.	Quel salaire souhaitez-vous avoir lors de votre future embauche ?</h3>
+		<div style="margin-left: 50px ; margin-bottom: 50px;">
+				  Réponse : <b>#{ctpFoldersBean.listInformationSelontypeQuestion(ctpFolders.currentCtp.matricule).get(9).reponce}</b>	   
+				  </div>		
+		
+<h3>8.	Réalisez-vous des activités rémunératrices (freelance, projet personnel...) ?</h3>
+		<div style="margin-left: 50px ; margin-bottom: 50px;">
+	Réponse : <b>#{ctpFoldersBean.changeVariable(ctpFoldersBean.listInformationSelontypeQuestion(ctpFolders.currentCtp.matricule).get(4).reponce)}</b>	   				   
+</div>		
+		
+		
+		
+							
+		
+</div>
+</div>
+</div>
+		</h:body>
+		
+		 
+	 
+		</html>

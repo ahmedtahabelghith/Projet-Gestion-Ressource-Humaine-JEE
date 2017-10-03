@@ -1,0 +1,1053 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head> 
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+   
+</h:head>
+
+
+	<body style="background-color: #10578D;  ">
+<h:panelGrid columns="5" cellpadding="1" style="  width:100%;margin-bottom:50px;background-color: #FFFFFF; "> 
+<p:button  value="Consulter tableau d'état"  outcome="tableauEtatCTP.xhtml"  icon="ui-icon-calculator" style="  "  />
+ <p:button  value="Consulter les dossiers"   outcome="consulterDossierCTP.xhtml" icon="ui-icon-copy" style="     "  />
+ <p:button  value="Statistiques : Courbes"  outcome="statistiqueCourbe.xhtml"   icon="ui-icon-image"  style="   " />
+ <p:button  value="Statistiques : Tableaux" outcome="statistiqueTableaux.xhtml"  icon="ui-icon-grip-solid-horizontal"  style="   " />
+  </h:panelGrid>
+
+ 
+ 
+    <h:form> 
+ <fieldset > 
+   <legend   style="color: #FFFFFF">Statistique globale</legend> 
+    
+      
+  <h:panelGrid columns="2" cellpadding="3" style="  width:100%;margin-bottom:50px;background-color: #FFFFFF; "> 
+   <div style="display: inline-block;">
+  <table border="1" style="background-color: #FFFFFF;   ">
+  	<tr>
+  		<td rowspan="4" style="background-color: #DEB887;"> Statistique formation par genre </td>
+  		<td><b>Genre</b></td>
+  		<td><b>Effectif</b></td>
+  		<td><b>En%</b></td>
+  	</tr>
+  <tr>
+  <td>M</td>
+  <td>#{statistique.rechercheNomberCTPHomme()}</td>
+  <td>#{statistique.purcentage(statistique.rechercheNomberCTPHomme(),statistique.somme(statistique.rechercheNomberCTPHomme(),statistique.rechercheNomberCTPFemme(),0,0))} %</td>
+  </tr>
+  <tr>
+  <td>F</td>
+  <td>#{statistique.rechercheNomberCTPFemme()}</td>
+ <td>#{statistique.purcentage(statistique.rechercheNomberCTPFemme(),statistique.somme(statistique.rechercheNomberCTPHomme(),statistique.rechercheNomberCTPFemme(),0,0))} %</td>
+  
+  </tr>
+  <tr>
+  <td><b>Total</b></td>
+  <td>#{statistique.somme(statistique.rechercheNomberCTPHomme(),statistique.rechercheNomberCTPFemme(),0,0)}</td>
+  <td>100%</td>
+  </tr>
+  
+  </table>
+ </div>
+  
+   
+     <div style="display: inline-block;">
+<table border="1" style="background-color: #FFFFFF;  ">
+  	<tr>
+  		<td rowspan="4" style="background-color: #DEB887;"> Statistique embauche </td>
+  		<td><b>Genre</b></td>
+  		<td><b>Effectif</b></td>
+  		<td><b>En%</b></td>
+  	</tr>
+  <tr>
+  <td>M</td>
+  <td>#{statistique.embaucheCTPHomme()}</td>
+  <td>#{statistique.purcentage(statistique.embaucheCTPHomme(),statistique.somme(statistique.embaucheCTPHomme(),statistique.embaucheCTPFemme(),0,0))} %</td>
+  </tr>
+  <tr>
+  <td>F</td>
+  <td>#{statistique.embaucheCTPFemme()}</td>
+ <td>#{statistique.purcentage(statistique.embaucheCTPFemme(),statistique.somme(statistique.embaucheCTPHomme(),statistique.embaucheCTPFemme(),0,0))} %</td>
+  
+  </tr>
+  <tr>
+  <td><b>Total</b></td>
+  <td>#{statistique.somme(statistique.embaucheCTPFemme(),statistique.embaucheCTPHomme(),0,0)}</td>
+  <td>100%</td>
+  </tr>
+  
+  </table>
+  </div>
+ 
+  
+   <div style="display: inline-block;">
+    
+  <table border="1" style="background-color: #FFFFFF;  ">
+  	<tr>
+  		<td rowspan="4" style="background-color: #DEB887;"> Statistique arrêt avant terme </td>
+  		<td><b>Genre</b></td>
+  		<td><b>Effectif</b></td>
+  		<td><b>En%</b></td>
+  	</tr>
+  <tr>
+  <td>M</td>
+  <td>#{statistique.arretAvantTermeHomme()}</td>
+  <td>#{statistique.purcentage(statistique.arretAvantTermeHomme(),statistique.somme(statistique.arretAvantTermeHomme(),statistique.arretAvantTermeFemme(),0,0))} %</td>
+  </tr>
+  <tr>
+  <td>F</td>
+  <td>#{statistique.arretAvantTermeFemme()}</td>
+ <td>#{statistique.purcentage(statistique.arretAvantTermeFemme(),statistique.somme(statistique.arretAvantTermeHomme(),statistique.arretAvantTermeFemme(),0,0))} %</td>
+  
+  </tr>
+  <tr>
+  <td><b>Total</b></td>
+  <td>#{statistique.somme(statistique.arretAvantTermeHomme(),statistique.arretAvantTermeFemme(),0,0)}</td>
+  <td>100%</td>
+  </tr>
+  
+  </table>
+  
+    </div>
+    
+     <div style="display: inline-block;">
+    <table border="1" style="background-color: #FFFFFF; ">
+  	<tr>
+  		<td rowspan="6" style="background-color: #DEB887;"> Statistique composition actuelle Elan </td>
+  		<td><b>Département</b></td>
+  		<td><b>Capacité en postes</b></td>
+  		<td><b>Nombre actuel</b></td>
+  	</tr>
+  <tr>
+  <td>Département commerce</td>
+  <td>8</td>
+ 
+  <td>#{statistique.statistiqueELanSelonPoste("commerce")}</td>
+   </tr>
+  <tr>
+  <td>Département finance</td>
+  <td>3</td>
+  <td>#{statistique.statistiqueELanSelonPoste("finance")}</td>
+  
+  </tr>
+    
+      <tr>
+  <td>Département comptabilité</td>
+  <td>5</td>
+  <td>#{statistique.statistiqueELanSelonPoste("comptabilite")}</td>
+  </tr>
+    
+      <tr>
+  <td>Département RH</td>
+  <td>4</td>
+  <td>#{statistique.statistiqueELanSelonPoste("RH")}</td>
+    </tr>
+  <tr>
+  <td><b>Total</b></td>
+  <td>20</td>
+  <td>#{statistique.somme(statistique.statistiqueELanSelonPoste("RH"),statistique.statistiqueELanSelonPoste("finance"),statistique.statistiqueELanSelonPoste("comptabilite"),statistique.statistiqueELanSelonPoste("commerce"))}</td>
+  </tr>
+  
+  </table>
+ </div>
+ 
+ <div style="display: inline-block;">
+  <table border="1" style="background-color: #FFFFFF;  ">
+  	<tr>
+  		<td rowspan="6" style="background-color: #DEB887;"> Statistique composition actuelle PES </td>
+  		<td><b>Département</b></td>
+  		<td><b>Capacité en postes</b></td>
+  		<td><b>Nombre actuel</b></td>
+  	</tr>
+  <tr>
+  <td>Département développement</td>
+  <td>3</td>
+ 
+  <td>#{statistique.statistiquePesSelonPoste("developpement")}</td>
+   </tr>
+  
+    <tr>
+  <td>Département design</td>
+  <td>2</td>
+ 
+  <td>#{statistique.statistiquePesSelonPoste("design")}</td>
+   </tr>
+  
+    <tr>
+  <td>Département marketing</td>
+  <td>4</td>
+ 
+  <td>#{statistique.statistiquePesSelonPoste("marketing")}</td>
+   </tr>
+
+  <tr>
+  <td><b>Total</b></td>
+  <td>9</td>
+  <td>#{statistique.somme(statistique.statistiquePesSelonPoste("developpement"),statistique.statistiquePesSelonPoste("design"),statistique.statistiquePesSelonPoste("marketing"),0)}</td>
+  </tr>
+    </table>
+ </div>
+     
+     <div style="display: inline-block;">
+  <table border="1" style="background-color: #FFFFFF;  ">
+  	<tr>
+  		<td rowspan="6" style="background-color: #DEB887;"> Statistique situation </td>
+  		<td><b>Situation</b></td>
+  		<td><b>Nombre</b></td>
+  		<td><b>En %</b></td>
+  	</tr>
+  <tr>
+  <td>Embauché</td>
+  <td>#{statistique.situationEmbauche()}</td> 
+  <td>#{statistique.purcentage(statistique.situationEmbauche(),statistique.somme(statistique.situationEmbauche(),statistique.situationArretAvantTerme(),statistique.situationRecherchEmploi(),0))} %</td>
+     </tr>
+      <tr>
+  <td>En recheche d'emploi</td>
+  <td>#{statistique.situationRecherchEmploi()}</td>
+  
+  <td>#{statistique.purcentage(statistique.situationRecherchEmploi(),statistique.somme(statistique.situationEmbauche(),statistique.situationArretAvantTerme(),statistique.situationRecherchEmploi(),0))} %</td>
+   </tr>  
+    <tr>
+  <td>Arrêt avant terme</td> 
+  <td>#{statistique.situationArretAvantTerme()}</td>
+  <td>#{statistique.purcentage(statistique.situationArretAvantTerme(),statistique.somme(statistique.situationEmbauche(),statistique.situationArretAvantTerme(),statistique.situationRecherchEmploi(),0))} %</td>
+  </tr>
+
+  <tr>
+  <td><b>Total</b></td>
+  <td>#{statistique.somme(statistique.situationArretAvantTerme(),statistique.situationEmbauche(),statistique.situationRecherchEmploi(),0)}</td>
+  
+  <td>100%</td>
+  </tr>
+  
+  </table>
+    </div>
+   
+   
+   <div style="display: inline-block;">
+  <table border="1" style="background-color: #FFFFFF;  ">
+  	<tr>
+  		<td rowspan="6" style="background-color: #DEB887;"> Statistique certification </td>
+  		<td><b>Situation</b></td>
+  		<td><b>Nombre</b></td>
+  		<td><b>En %</b></td>
+  	</tr>
+  <tr>
+  <td>Eligible</td>
+  <td>#{statistique.certificationEligible()}</td> 
+  <td>#{statistique.purcentage(statistique.certificationEligible(),statistique.somme(statistique.certificationEligible(),statistique.certificationNonEligible(),0,0))} %</td>
+     </tr>
+      <tr>
+  <td>Non Eligible</td>
+  <td>#{statistique.certificationNonEligible()}</td>
+  
+  <td>#{statistique.purcentage(statistique.certificationNonEligible(),statistique.somme(statistique.certificationEligible(),statistique.certificationNonEligible(),0,0))} %</td>
+   </tr>  
+     
+  <tr>
+  <td><b>Total</b></td>
+  <td>#{statistique.somme(statistique.certificationNonEligible(),statistique.certificationEligible(),0,0)}</td>
+  
+  <td>100%</td>
+  </tr>
+  
+  </table>
+  </div>
+ </h:panelGrid>
+</fieldset>
+  
+  
+  
+  
+   <fieldset >
+   <legend style="color: #FFFFFF">Statistique par an :  </legend>
+   
+ 
+    <p:selectOneMenu  style="width:200px;"    required="true" value="#{chartView.curentYear}" >
+   
+    
+ <f:selectItem itemLabel="Select One" itemValue="" />
+ <f:selectItems value="#{statistique.listAnne()}" var="var"  itemLabel="#{var}" itemValue="#{var}" />
+  <p:ajax   update="StatAn" ></p:ajax>
+ 
+ </p:selectOneMenu>
+  	 
+ <p:panel id="StatAn">
+  
+  
+  
+  <table border="1" style="background-color: #FFFFFF; display: inline-block;   ">
+  	<tr>
+  		<td rowspan="4" style="background-color: #DEB887;"> Statistique formation par genre </td>
+  		<td><b>Genre</b></td>
+  		<td><b>Effectif</b></td>
+  		<td><b>En%</b></td>
+  	</tr>
+  <tr>
+  <td>M</td>
+  <td>#{statistique.rechercheNomberCTPHommeSelonAn(chartView.curentYear)}</td>
+  <td>#{statistique.purcentage(statistique.rechercheNomberCTPHommeSelonAn(chartView.curentYear),statistique.somme(statistique.rechercheNomberCTPHommeSelonAn(chartView.curentYear),statistique.rechercheNomberCTPFemmeSelonAn(chartView.curentYear),0,0))} %</td>
+  </tr>
+  <tr>
+  <td>F</td>
+  <td>#{statistique.rechercheNomberCTPFemmeSelonAn(chartView.curentYear)}</td>
+ <td>#{statistique.purcentage(statistique.rechercheNomberCTPFemmeSelonAn(chartView.curentYear),statistique.somme(statistique.rechercheNomberCTPHommeSelonAn(chartView.curentYear),statistique.rechercheNomberCTPFemmeSelonAn(chartView.curentYear),0,0))} %</td>
+  </tr>
+  <tr>
+  <td><b>Total</b></td>
+  <td>#{statistique.somme(statistique.rechercheNomberCTPHommeSelonAn(chartView.curentYear),statistique.rechercheNomberCTPFemmeSelonAn(chartView.curentYear),0,0)}</td>
+  <td>100%</td>
+  </tr>  
+  </table>
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<table border="1" style="background-color: #FFFFFF; display: inline-block;">
+  	<tr>
+  		<td rowspan="4" style="background-color: #DEB887;"> Statistique embauche </td>
+  		<td><b>Genre</b></td>
+  		<td><b>Effectif</b></td>
+  		<td><b>En%</b></td>
+  	</tr>
+  <tr>
+  <td>M</td>
+  <td>#{statistique.embaucheCTPHommeSelanAn(chartView.curentYear)}</td>
+  <td>#{statistique.purcentage(statistique.embaucheCTPHommeSelanAn(chartView.curentYear),statistique.somme(statistique.embaucheCTPHommeSelanAn(chartView.curentYear),statistique.embaucheCTPFemmeSelanAn(chartView.curentYear),0,0))} %</td>
+  </tr>
+  <tr>
+  <td>F</td>
+  <td>#{statistique.embaucheCTPFemme()}</td>
+ <td>#{statistique.purcentage(statistique.embaucheCTPFemmeSelanAn(chartView.curentYear),statistique.somme(statistique.embaucheCTPHommeSelanAn(chartView.curentYear),statistique.embaucheCTPFemmeSelanAn(chartView.curentYear),0,0))} %</td>
+  
+  </tr>
+  <tr>
+  <td><b>Total</b></td>
+  <td>#{statistique.somme(statistique.embaucheCTPFemmeSelanAn(chartView.curentYear),statistique.embaucheCTPHommeSelanAn(chartView.curentYear),0,0)}</td>
+  <td>100%</td>
+  </tr>
+  
+  </table>
+  
+ 
+  
+   
+    
+  <table border="1" style="background-color: #FFFFFF; display: inline-block;">
+  	<tr>
+  		<td rowspan="4" style="background-color: #DEB887;"> Statistique arrêt avant terme </td>
+  		<td><b>Genre</b></td>
+  		<td><b>Effectif</b></td>
+  		<td><b>En%</b></td>
+  	</tr>
+  <tr>
+  <td>M</td>
+  <td>#{statistique.arretAvantTermeHommeSelonAn(chartView.curentYear)}</td>
+  <td>#{statistique.purcentage(statistique.arretAvantTermeHommeSelonAn(chartView.curentYear),statistique.somme(statistique.arretAvantTermeHommeSelonAn(chartView.curentYear),statistique.arretAvantTermeFemmeSelonAn(chartView.curentYear),0,0))} %</td>
+  </tr>
+  <tr>
+  <td>F</td>
+  <td>#{statistique.arretAvantTermeFemmeSelonAn(chartView.curentYear)}</td>
+ <td>#{statistique.purcentage(statistique.arretAvantTermeFemmeSelonAn(chartView.curentYear),statistique.somme(statistique.arretAvantTermeHommeSelonAn(chartView.curentYear),statistique.arretAvantTermeFemmeSelonAn(chartView.curentYear),0,0))} %</td>
+  
+  </tr>
+  <tr>
+  <td><b>Total</b></td>
+  <td>#{statistique.somme(statistique.arretAvantTermeHommeSelonAn(chartView.curentYear),statistique.arretAvantTermeFemmeSelonAn(chartView.curentYear),0,0)}</td>
+  <td>100%</td>
+  </tr>
+  
+  </table>
+  
+    
+    <table border="1" style="background-color: #FFFFFF;display: inline-block;">
+  	<tr>
+  		<td rowspan="6" style="background-color: #DEB887;"> Statistique composition actuelle Elan </td>
+  		<td><b>Département</b></td>
+  		<td><b>Capacité en postes</b></td>
+  		<td><b>Nombre actuel</b></td>
+  	</tr>
+  <tr>
+  <td>Département commerce</td>
+  <td>8</td>
+ 
+  <td>#{statistique.statistiqueELanSelonPosteSelonAn("commerce",chartView.curentYear)}</td>
+   </tr>
+  <tr>
+  <td>Département finance</td>
+  <td>3</td>
+  <td>#{statistique.statistiqueELanSelonPosteSelonAn("finance",chartView.curentYear)}</td>
+  
+  </tr>
+    
+      <tr>
+  <td>Département comptabilité</td>
+  <td>5</td>
+  <td>#{statistique.statistiqueELanSelonPosteSelonAn("comptabilite",chartView.curentYear)}</td>
+  </tr>
+    
+      <tr>
+  <td>Département RH</td>
+  <td>4</td>
+  <td>#{statistique.statistiqueELanSelonPosteSelonAn("RH",chartView.curentYear)}</td>
+    </tr>
+  <tr>
+  <td><b>Total</b></td>
+  <td>20</td>
+  <td>#{statistique.somme(statistique.statistiqueELanSelonPosteSelonAn("RH",chartView.curentYear),statistique.statistiqueELanSelonPosteSelonAn("finance",chartView.curentYear),statistique.statistiqueELanSelonPosteSelonAn("comptabilite",chartView.curentYear),statistique.statistiqueELanSelonPosteSelonAn("commerce",chartView.curentYear))}</td>
+  </tr>
+  
+  </table>
+ 
+  <table border="1" style="background-color: #FFFFFF; display: inline-block;">
+  	<tr>
+  		<td rowspan="6" style="background-color: #DEB887;"> Statistique composition actuelle PES </td>
+  		<td><b>Département</b></td>
+  		<td><b>Capacité en postes</b></td>
+  		<td><b>Nombre actuel</b></td>
+  	</tr>
+  <tr>
+  <td>Département développement</td>
+  <td>3</td>
+ 
+  <td>#{statistique.statistiquePESSelonPosteSelonAn ("developpement",chartView.curentYear)}</td>
+   </tr>
+  
+    <tr>
+  <td>Département design</td>
+  <td>2</td>
+ 
+  <td>#{statistique.statistiquePESSelonPosteSelonAn("design",chartView.curentYear)}</td>
+   </tr>
+  
+    <tr>
+  <td>Département marketing</td>
+  <td>4</td>
+ 
+  <td>#{statistique.statistiquePESSelonPosteSelonAn("marketing",chartView.curentYear)}</td>
+   </tr>
+
+  <tr>
+  <td><b>Total</b></td>
+  <td>9</td>
+  <td>#{statistique.somme(statistique.statistiquePESSelonPosteSelonAn("developpement",chartView.curentYear),statistique.statistiquePESSelonPosteSelonAn("design",chartView.curentYear),statistique.statistiquePESSelonPosteSelonAn("marketing",chartView.curentYear),0)}</td>
+  </tr>
+    </table>
+ 
+     
+    
+  <table border="1" style="background-color: #FFFFFF; display: inline-block;">
+  	<tr>
+  		<td rowspan="6" style="background-color: #DEB887;"> Statistique situation </td>
+  		<td><b>Situation</b></td>
+  		<td><b>Nombre</b></td>
+  		<td><b>En %</b></td>
+  	</tr>
+  <tr>
+  <td>Embauché</td>
+  <td>#{statistique.situationEmbaucheSelonAn(chartView.curentYear)}</td> 
+  <td>#{statistique.purcentage(statistique.situationEmbaucheSelonAn(chartView.curentYear),statistique.somme(statistique.situationEmbaucheSelonAn(chartView.curentYear),statistique.situationArretAvantTermeSelonAn(chartView.curentYear),statistique.situationRecherchEmploiSelonAn(chartView.curentYear),0))} %</td>
+     </tr>
+      <tr>
+  <td>En recheche d'emploi</td>
+  <td>#{statistique.situationRecherchEmploiSelonAn(chartView.curentYear)}</td>
+  
+  <td>#{statistique.purcentage(statistique.situationRecherchEmploiSelonAn(chartView.curentYear),statistique.somme(statistique.situationEmbaucheSelonAn(chartView.curentYear),statistique.situationArretAvantTermeSelonAn(chartView.curentYear),statistique.situationRecherchEmploiSelonAn(chartView.curentYear),0))} %</td>
+   </tr>  
+    <tr>
+  <td>Arrêt avant terme</td> 
+  <td>#{statistique.situationArretAvantTermeSelonAn(chartView.curentYear)}</td>
+  <td>#{statistique.purcentage(statistique.situationArretAvantTermeSelonAn(chartView.curentYear),statistique.somme(statistique.situationEmbaucheSelonAn(chartView.curentYear),statistique.situationArretAvantTermeSelonAn(chartView.curentYear),statistique.situationRecherchEmploiSelonAn(chartView.curentYear),0))} %</td>
+  </tr>
+
+  <tr>
+  <td><b>Total</b></td>
+  <td>#{statistique.somme(statistique.situationArretAvantTermeSelonAn(chartView.curentYear),statistique.situationEmbaucheSelonAn(chartView.curentYear),statistique.situationRecherchEmploiSelonAn(chartView.curentYear),0)}</td>
+  
+  <td>100%</td>
+  </tr>
+  
+  </table>
+    
+   
+   
+    
+  <table border="1" style="background-color: #FFFFFF;display: inline-block; ">
+  	<tr>
+  		<td rowspan="6" style="background-color: #DEB887;"> Statistique certification </td>
+  		<td><b>Situation</b></td>
+  		<td><b>Nombre</b></td>
+  		<td><b>En %</b></td>
+  	</tr>
+  <tr>
+  <td>Eligible</td>
+  <td>#{statistique.certificationEligibleSelonAn(chartView.curentYear)}</td> 
+  <td>#{statistique.purcentage(statistique.certificationEligibleSelonAn(chartView.curentYear),statistique.somme(statistique.certificationEligibleSelonAn(chartView.curentYear),statistique.certificationNonEligibleSelonAn(chartView.curentYear),0,0))} %</td>
+     </tr>
+      <tr>
+  <td>Non Eligible</td>
+  <td>#{statistique.certificationNonEligibleSelonAn(chartView.curentYear)}</td>
+  
+  <td>#{statistique.purcentage(statistique.certificationNonEligibleSelonAn(chartView.curentYear),statistique.somme(statistique.certificationEligibleSelonAn(chartView.curentYear),statistique.certificationNonEligibleSelonAn(chartView.curentYear),0,0))} %</td>
+   </tr>  
+     
+  <tr>
+  <td><b>Total</b></td>
+  <td>#{statistique.somme(statistique.certificationNonEligibleSelonAn(chartView.curentYear),statistique.certificationEligibleSelonAn(chartView.curentYear),0,0)}</td>
+  
+  <td>100%</td>
+  </tr>
+  
+  </table>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+    
+  <table border="1" style="background-color: #FFFFFF;display: inline-block; ">
+  	<tr>
+  		<td rowspan="14" style="background-color: #DEB887;"> Statistique taux d'occupation Elan (sur la base de 20 postes)  </td>
+  		<td><b>Mois</b></td>
+  		<td><b>Nombre</b></td>
+  		<td><b>En %</b></td>
+  	</tr>
+  <tr>
+  <td>Janvier</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("01","01", chartView.curentYear)}</td> 
+  <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("01","01", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","01", chartView.curentYear)))} %</td>
+     </tr>
+  <tr>
+  <td>Février</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("02","01", chartView.curentYear)}</td>   
+ <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("02","01", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","01", chartView.curentYear)))} %</td>
+     </tr>  
+     
+     <tr>
+  <td>Mars</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("03","01", chartView.curentYear)}</td>   
+  <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("03","01", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","01", chartView.curentYear)))} %</td>
+     </tr>   
+     
+     <tr>
+  <td>Avril</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("04","01", chartView.curentYear)}</td>   
+  <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("04","01", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","01", chartView.curentYear)))} %</td>
+     </tr>   
+     
+       <tr>
+  <td>Mai</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("05","01", chartView.curentYear)}</td>   
+ <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("05","01", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","01", chartView.curentYear)))} %</td>
+      </tr> 
+     
+     
+    <tr>
+  <td>Juin</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("06","01", chartView.curentYear)}</td>   
+ <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("06","01", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","01", chartView.curentYear)))} %</td>
+     </tr>    
+     
+       <tr>
+  <td>Juillet</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("07","01", chartView.curentYear)}</td>   
+  <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("07","01", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","01", chartView.curentYear)))} %</td>
+     </tr> 
+     
+     
+       <tr>
+  <td>Août</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("08","01", chartView.curentYear)}</td>   
+ <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("08","01", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","01", chartView.curentYear)))} %</td>
+     </tr> 
+     
+       <tr>
+  <td>Septembre</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("09","01", chartView.curentYear)}</td>   
+ <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("09","01", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","01", chartView.curentYear)))} %</td>
+      </tr> 
+     
+       <tr>
+  <td>Obtobre</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("10","01", chartView.curentYear)}</td>   
+  <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("10","01", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","01", chartView.curentYear)))} %</td>
+     </tr> 
+     
+    <tr>
+  <td>Novembre</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("11","01", chartView.curentYear)}</td>   
+  <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("11","01", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","01", chartView.curentYear)))} %</td>
+      </tr>    
+     
+       <tr>
+  <td>Décembre</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("12","01", chartView.curentYear)}</td>   
+  <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("12","01", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","01", chartView.curentYear)))} %</td>
+      </tr> 
+   
+  
+  </table>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+  <table border="1" style="background-color: #FFFFFF;display: inline-block; ">
+  	<tr>
+  		<td rowspan="14" style="background-color: #DEB887;"> Statistique taux d'occupation PES (sur la base de 9 postes)  </td>
+  		<td><b>Mois</b></td>
+  		<td><b>Nombre</b></td>
+  		<td><b>En %</b></td>
+  	</tr>
+  <tr>
+  <td>Janvier</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("01","02", chartView.curentYear)}</td> 
+  <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("01","02", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","01", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","01", chartView.curentYear)))} %</td>
+     </tr>
+  <tr>
+  <td>Février</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("02","02", chartView.curentYear)}</td>   
+ <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("02","02", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("02","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","02", chartView.curentYear)))} %</td>
+     </tr>  
+     
+     <tr>
+  <td>Mars</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("03","02", chartView.curentYear)}</td>   
+  <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("03","02", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","02", chartView.curentYear)))} %</td>
+     </tr>   
+     
+     <tr>
+  <td>Avril</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("04","02", chartView.curentYear)}</td>   
+  <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("04","02", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","02", chartView.curentYear)))} %</td>
+     </tr>   
+     
+       <tr>
+  <td>Mai</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("05","02", chartView.curentYear)}</td>   
+ <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("05","02", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","02", chartView.curentYear)))} %</td>
+      </tr> 
+     
+     
+    <tr>
+  <td>Juin</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("06","02", chartView.curentYear)}</td>   
+ <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("06","02", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","02", chartView.curentYear)))} %</td>
+     </tr>    
+     
+       <tr>
+  <td>Juillet</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("07","02", chartView.curentYear)}</td>   
+  <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("07","02", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","02", chartView.curentYear)))} %</td>
+     </tr> 
+     
+     
+       <tr>
+  <td>Août</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("08","02", chartView.curentYear)}</td>   
+ <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("08","02", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","02", chartView.curentYear)))} %</td>
+     </tr> 
+     
+       <tr>
+  <td>Septembre</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("09","02", chartView.curentYear)}</td>   
+ <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("09","02", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","02", chartView.curentYear)))} %</td>
+      </tr> 
+     
+       <tr>
+  <td>Obtobre</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("10","02", chartView.curentYear)}</td>   
+  <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("10","02", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","02", chartView.curentYear)))} %</td>
+     </tr> 
+     
+    <tr>
+  <td>Novembre</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("11","02", chartView.curentYear)}</td>   
+  <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("11","02", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","02", chartView.curentYear)))} %</td>
+      </tr>    
+     
+       <tr>
+  <td>Décembre</td>
+  <td>#{statistique.tauxOccupationElanSelonAnMon ("12","02", chartView.curentYear)}</td>   
+  <td>#{statistique.purcentage(statistique.tauxOccupationElanSelonAnMon ("12","02", chartView.curentYear),statistique.sommeMois(statistique.tauxOccupationElanSelonAnMon ("01","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("02","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("03","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("04","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("05","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("06","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("07","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("08","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("09","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("10","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("11","02", chartView.curentYear),statistique.tauxOccupationElanSelonAnMon ("12","02", chartView.curentYear)))} %</td>
+      </tr> 
+    
+  </table>
+  
+  
+  </p:panel>
+  </fieldset>
+  
+  
+  
+  
+      <fieldset   style="margin-top: 50px;"> 
+   <legend style="color: #FFFFFF">Statistique par mois</legend> 
+   
+   
+      <p:selectOneMenu  style="width:200px;"    required="true" value="#{chartView.curentMonth}" >   
+ <f:selectItem itemLabel="Select One" itemValue="" />
+  <f:selectItem itemLabel="Janvier" itemValue="01" />
+   <f:selectItem itemLabel="Février" itemValue="02" />
+    <f:selectItem itemLabel="Mars" itemValue="03" />
+     <f:selectItem itemLabel="Avril" itemValue="04" />
+      <f:selectItem itemLabel="Mai" itemValue="05" />
+       <f:selectItem itemLabel="Juin" itemValue="06" />
+        <f:selectItem itemLabel="Juillet" itemValue="07" />
+         <f:selectItem itemLabel="Oût" itemValue="08" />
+          <f:selectItem itemLabel="Septembre" itemValue="09" />
+           <f:selectItem itemLabel="Octobre" itemValue="10" />
+            <f:selectItem itemLabel="Novembre" itemValue="11" />
+             <f:selectItem itemLabel="Décembre" itemValue="12" />             
+  <p:ajax   update="StatMn" ></p:ajax> 
+ </p:selectOneMenu>
+    <p:selectOneMenu  style="width:200px;"    required="true" value="#{chartView.curentYear}" >   
+ <f:selectItem itemLabel="Select One" itemValue="" />
+ <f:selectItems value="#{statistique.listAnne()}" var="var"  itemLabel="#{var}" itemValue="#{var}" />
+  <p:ajax   update="StatMn" ></p:ajax> 
+ </p:selectOneMenu>
+  
+
+  	 
+ <p:panel id="StatMn">
+ 
+ 
+ 
+ 
+ 
+ 
+  <table border="1" style="background-color: #FFFFFF; display: inline-block;   ">
+  	<tr>
+  		<td rowspan="4" style="background-color: #DEB887;"> Statistique formation par genre </td>
+  		<td><b>Genre</b></td>
+  		<td><b>Effectif</b></td>
+  		<td><b>En%</b></td>
+  	</tr>
+  <tr>
+  <td>M</td>
+  <td>#{statistique.rechercheNomberCTPHommeSelonAnMon(chartView.curentYear , chartView.curentMonth)}</td>
+  <td>#{statistique.purcentage(statistique.rechercheNomberCTPHommeSelonAnMon(chartView.curentYear, chartView.curentMonth),statistique.somme(statistique.rechercheNomberCTPHommeSelonAnMon(chartView.curentYear, chartView.curentMonth),statistique.rechercheNomberCTPFemmeSelonAnMon(chartView.curentYear, chartView.curentMonth),0,0))} %</td>
+  </tr>
+  <tr>
+  <td>F</td>
+  <td>#{statistique.rechercheNomberCTPFemmeSelonAnMon(chartView.curentYear, chartView.curentMonth)}</td>
+ <td>#{statistique.purcentage(statistique.rechercheNomberCTPFemmeSelonAnMon(chartView.curentYear, chartView.curentMonth),statistique.somme(statistique.rechercheNomberCTPHommeSelonAnMon(chartView.curentYear, chartView.curentMonth),statistique.rechercheNomberCTPFemmeSelonAnMon(chartView.curentYear, chartView.curentMonth),0,0))} %</td>
+  </tr>
+  <tr>
+  <td><b>Total</b></td>
+  <td>#{statistique.somme(statistique.rechercheNomberCTPHommeSelonAnMon(chartView.curentYear, chartView.curentMonth),statistique.rechercheNomberCTPFemmeSelonAnMon(chartView.curentYear, chartView.curentMonth),0,0)}</td>
+  <td>100%</td>
+  </tr>  
+  </table>
+ 
+ 
+ 
+ 
+ 
+   
+    
+<table border="1" style="background-color: #FFFFFF; display: inline-block;">
+  	<tr>
+  		<td rowspan="4" style="background-color: #DEB887;"> Statistique embauche </td>
+  		<td><b>Genre</b></td>
+  		<td><b>Effectif</b></td>
+  		<td><b>En%</b></td>
+  	</tr>
+  <tr>
+  <td>M</td>
+  <td>#{statistique.embaucheCTPHommeSelanAnMon(chartView.curentYear,chartView.curentMonth)}</td>
+  <td>#{statistique.purcentage(statistique.embaucheCTPHommeSelanAnMon(chartView.curentYear,chartView.curentMonth),statistique.somme(statistique.embaucheCTPHommeSelanAnMon(chartView.curentYear,chartView.curentMonth),statistique.embaucheCTPFemmeSelanAnMon(chartView.curentYear,chartView.curentMonth),0,0))} %</td>
+  </tr>
+  <tr>
+  <td>F</td>
+  <td>#{statistique.embaucheCTPFemmeSelanAnMon(chartView.curentYear,chartView.curentMonth)}</td>
+ <td>#{statistique.purcentage(statistique.embaucheCTPFemmeSelanAnMon(chartView.curentYear,chartView.curentMonth),statistique.somme(statistique.embaucheCTPHommeSelanAnMon(chartView.curentYear,chartView.curentMonth),statistique.embaucheCTPFemmeSelanAnMon(chartView.curentYear,chartView.curentMonth),0,0))} %</td>
+  
+  </tr>
+  <tr>
+  <td><b>Total</b></td>
+  <td>#{statistique.somme(statistique.embaucheCTPFemmeSelanAnMon(chartView.curentYear,chartView.curentMonth),statistique.embaucheCTPHommeSelanAnMon(chartView.curentYear,chartView.curentMonth),0,0)}</td>
+  <td>100%</td>
+  </tr>
+  
+  </table>
+ 
+ 
+ 
+ 
+ 
+   
+    
+  <table border="1" style="background-color: #FFFFFF; display: inline-block;">
+  	<tr>
+  		<td rowspan="4" style="background-color: #DEB887;"> Statistique arrêt avant terme </td>
+  		<td><b>Genre</b></td>
+  		<td><b>Effectif</b></td>
+  		<td><b>En%</b></td>
+  	</tr>
+  <tr>
+  <td>M</td>
+  <td>#{statistique.arretAvantTermeHommeSelonAnMon(chartView.curentYear,chartView.curentMonth)}</td>
+  <td>#{statistique.purcentage(statistique.arretAvantTermeHommeSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.somme(statistique.arretAvantTermeHommeSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.arretAvantTermeFemmeSelonAnMon(chartView.curentYear,chartView.curentMonth),0,0))} %</td>
+  </tr>
+  <tr>
+  <td>F</td>
+  <td>#{statistique.arretAvantTermeFemmeSelonAnMon(chartView.curentYear,chartView.curentMonth)}</td>
+ <td>#{statistique.purcentage(statistique.arretAvantTermeFemmeSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.somme(statistique.arretAvantTermeHommeSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.arretAvantTermeFemmeSelonAnMon(chartView.curentYear,chartView.curentMonth),0,0))} %</td>
+  
+  </tr>
+  <tr>
+  <td><b>Total</b></td>
+  <td>#{statistique.somme(statistique.arretAvantTermeHommeSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.arretAvantTermeFemmeSelonAnMon(chartView.curentYear,chartView.curentMonth),0,0)}</td>
+  <td>100%</td>
+  </tr>
+  
+  </table>
+  
+
+
+ 
+  <table border="1" style="background-color: #FFFFFF;display: inline-block;">
+  	<tr>
+  		<td rowspan="6" style="background-color: #DEB887;"> Statistique composition actuelle Elan </td>
+  		<td><b>Département</b></td>
+  		<td><b>Capacité en postes</b></td>
+  		<td><b>Nombre actuel</b></td>
+  	</tr>
+  <tr>
+  <td>Département commerce</td>
+  <td>8</td>
+ 
+  <td>#{statistique.statistiqueElanSelonPosteSelonAnMon("commerce", chartView.curentYear,chartView.curentMonth)}</td>
+   </tr>
+  <tr>
+  <td>Département finance</td>
+  <td>3</td>
+  <td>#{statistique.statistiqueElanSelonPosteSelonAnMon("finance", chartView.curentYear,chartView.curentMonth)}</td>
+  
+  </tr>
+    
+      <tr>
+  <td>Département comptabilité</td>
+  <td>5</td>
+  <td>#{statistique.statistiqueElanSelonPosteSelonAnMon("comptabilite", chartView.curentYear,chartView.curentMonth)}</td>
+  </tr>
+    
+      <tr>
+  <td>Département RH</td>
+  <td>4</td>
+  <td>#{statistique.statistiqueElanSelonPosteSelonAnMon("RH", chartView.curentYear,chartView.curentMonth)}</td>
+    </tr>
+  <tr>
+  <td><b>Total</b></td>
+  <td>20</td>
+  <td>#{statistique.somme(statistique.statistiqueElanSelonPosteSelonAnMon("RH", chartView.curentYear,chartView.curentMonth),statistique.statistiqueElanSelonPosteSelonAnMon("finance", chartView.curentYear,chartView.curentMonth),statistique.statistiqueElanSelonPosteSelonAnMon("comptabilite", chartView.curentYear,chartView.curentMonth),statistique.statistiqueElanSelonPosteSelonAnMon("commerce", chartView.curentYear,chartView.curentMonth))}</td>
+  </tr>
+  
+  </table>
+ 
+  <table border="1" style="background-color: #FFFFFF; display: inline-block;">
+  	<tr>
+  		<td rowspan="6" style="background-color: #DEB887;"> Statistique composition actuelle PES </td>
+  		<td><b>Département</b></td>
+  		<td><b>Capacité en postes</b></td>
+  		<td><b>Nombre actuel</b></td>
+  	</tr>
+  <tr>
+  <td>Département développement</td>
+  <td>3</td>
+ 
+  <td>#{statistique.statistiquePESSelonPosteSelonAnMon("developpement", chartView.curentYear,chartView.curentMonth)}</td>
+   </tr>
+  
+    <tr>
+  <td>Département design</td>
+  <td>2</td>
+ 
+  <td>#{statistique.statistiquePESSelonPosteSelonAnMon("design", chartView.curentYear,chartView.curentMonth)}</td>
+   </tr>
+  
+    <tr>
+  <td>Département marketing</td>
+  <td>4</td>
+ 
+  <td>#{statistique.statistiquePESSelonPosteSelonAnMon("marketing", chartView.curentYear,chartView.curentMonth)}</td>
+   </tr>
+
+  <tr>
+  <td><b>Total</b></td>
+  <td>9</td>
+  <td>#{statistique.somme(statistique.statistiquePESSelonPosteSelonAnMon("developpement", chartView.curentYear,chartView.curentMonth),statistique.statistiquePESSelonPosteSelonAnMon("design", chartView.curentYear,chartView.curentMonth),statistique.statistiquePESSelonPosteSelonAnMon("marketing", chartView.curentYear,chartView.curentMonth),0)}</td>
+  </tr>
+    </table>
+ 
+     
+    
+  <table border="1" style="background-color: #FFFFFF; display: inline-block;">
+  	<tr>
+  		<td rowspan="6" style="background-color: #DEB887;"> Statistique situation </td>
+  		<td><b>Situation</b></td>
+  		<td><b>Nombre</b></td>
+  		<td><b>En %</b></td>
+  	</tr>
+  <tr>
+  <td>Embauché</td>
+  <td>#{statistique.situationEmbaucheSelonAnMon(chartView.curentYear,chartView.curentMonth)}</td> 
+  <td>#{statistique.purcentage(statistique.situationEmbaucheSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.somme(statistique.situationEmbaucheSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.situationArretAvantTermeSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.situationRecherchEmploiSelonAnMon(chartView.curentYear,chartView.curentMonth),0))} %</td>
+     </tr>
+      <tr>
+  <td>En recheche d'emploi</td>
+  <td>#{statistique.situationRecherchEmploiSelonAnMon(chartView.curentYear,chartView.curentMonth)}</td>
+  
+  <td>#{statistique.purcentage(statistique.situationRecherchEmploiSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.somme(statistique.situationEmbaucheSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.situationArretAvantTermeSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.situationRecherchEmploiSelonAnMon(chartView.curentYear,chartView.curentMonth),0))} %</td>
+   </tr>  
+    <tr>
+  <td>Arrêt avant terme</td> 
+  <td>#{statistique.situationArretAvantTermeSelonAnMon(chartView.curentYear,chartView.curentMonth)}</td>
+  <td>#{statistique.purcentage(statistique.situationArretAvantTermeSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.somme(statistique.situationEmbaucheSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.situationArretAvantTermeSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.situationRecherchEmploiSelonAnMon(chartView.curentYear,chartView.curentMonth),0))} %</td>
+  </tr>
+
+  <tr>
+  <td><b>Total</b></td>
+  <td>#{statistique.somme(statistique.situationArretAvantTermeSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.situationEmbaucheSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.situationRecherchEmploiSelonAnMon(chartView.curentYear,chartView.curentMonth),0)}</td>
+  
+  <td>100%</td>
+  </tr>
+  
+  </table>
+    
+   
+   
+    
+  <table border="1" style="background-color: #FFFFFF;display: inline-block; ">
+  	<tr>
+  		<td rowspan="6" style="background-color: #DEB887;"> Statistique certification </td>
+  		<td><b>Situation</b></td>
+  		<td><b>Nombre</b></td>
+  		<td><b>En %</b></td>
+  	</tr>
+  <tr>
+  <td>Eligible</td>
+  <td>#{statistique.certificationEligibleSelonAnMon(chartView.curentYear,chartView.curentMonth)}</td> 
+  <td>#{statistique.purcentage(statistique.certificationEligibleSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.somme(statistique.certificationEligibleSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.certificationNonEligibleSelonAnMon(chartView.curentYear,chartView.curentMonth),0,0))} %</td>
+     </tr>
+      <tr>
+  <td>Non Eligible</td>
+  <td>#{statistique.certificationNonEligibleSelonAnMon(chartView.curentYear,chartView.curentMonth)}</td>
+  
+  <td>#{statistique.purcentage(statistique.certificationNonEligibleSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.somme(statistique.certificationEligibleSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.certificationNonEligibleSelonAnMon(chartView.curentYear,chartView.curentMonth),0,0))} %</td>
+   </tr>  
+     
+  <tr>
+  <td><b>Total</b></td>
+  <td>#{statistique.somme(statistique.certificationNonEligibleSelonAnMon(chartView.curentYear,chartView.curentMonth),statistique.certificationEligibleSelonAnMon(chartView.curentYear,chartView.curentMonth),0,0)}</td>
+  
+  <td>100%</td>
+  </tr>
+  
+  </table>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ </p:panel>
+ </fieldset>
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    </h:form> 
+ 
+	</body>	
+	</html>
+ 
+    
+  

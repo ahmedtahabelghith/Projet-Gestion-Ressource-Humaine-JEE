@@ -1,0 +1,84 @@
+!SESSION 2016-08-29 09:08:05.472 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.6.0_11
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=fr_FR
+Framework arguments:  --vm C:\Program Files\Java\jdk1.6.0_11 -XX:PermSize=256m -XX:MaxPermSize=256m -product org.eclipse.epp.package.jee.product --vm C:\Program Files\Java\jdk1.6.0_11 -XX:PermSize=256m -XX:MaxPermSize=256m -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 --vm C:\Program Files\Java\jdk1.6.0_11 -XX:PermSize=256m -XX:MaxPermSize=256m -product org.eclipse.epp.package.jee.product -data C:\env_dev\workspace\AppGestionRH --vm C:\Program Files\Java\jdk1.6.0_11 -XX:PermSize=256m -XX:MaxPermSize=256m -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 4 0 2016-08-29 09:08:09.508
+!MESSAGE Could not load repository template extension contributed by org.springsource.ide.eclipse.dashboard.ui with connectorKind jira
+
+!ENTRY org.eclipse.mylyn.tasks.ui 4 0 2016-08-29 09:08:09.508
+!MESSAGE Could not load repository template extension contributed by org.springsource.ide.eclipse.dashboard.ui with connectorKind jira
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-08-29 09:08:17.430
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-08-29 09:08:17.430
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\dell'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.springsource.ide.eclipse.commons.frameworks.core 0 0 2016-08-29 09:08:18.647
+!MESSAGE Result of converting legacy STS 2.x workspace preferences to 3.x
+!SUBENTRY 1 org.springsource.ide.eclipse.commons.frameworks.core 0 0 2016-08-29 09:08:18.647
+!MESSAGE Converted legacy STS plugin preferences
+!SUBENTRY 1 unknown 0 0 2016-08-29 09:08:18.647
+!MESSAGE OK
+!SUBENTRY 1 org.springsource.ide.eclipse.commons.frameworks.core 0 0 2016-08-29 09:08:18.647
+!MESSAGE Converted legacy Roo plugin state locations
+!SUBENTRY 1 org.springsource.ide.eclipse.commons.frameworks.core 0 0 2016-08-29 09:08:18.647
+!MESSAGE Converted legacy STS plugin state locations
+
+!ENTRY org.eclipse.core.jobs 4 2 2016-08-29 09:08:26.471
+!MESSAGE An internal error occurred during: "Initializing nature- and builder-based usage monitoring".
+!STACK 0
+java.util.concurrent.RejectedExecutionException
+	at java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:1760)
+	at java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:767)
+	at java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:658)
+	at org.springframework.ide.eclipse.internal.uaa.UaaManager.registerProjectUsageForProduct(UaaManager.java:284)
+	at org.springframework.ide.eclipse.internal.uaa.monitor.NatureAndBuilderUsageMonitor.recordNatureEvent(NatureAndBuilderUsageMonitor.java:168)
+	at org.springframework.ide.eclipse.internal.uaa.monitor.NatureAndBuilderUsageMonitor.projectChanged(NatureAndBuilderUsageMonitor.java:139)
+	at org.springframework.ide.eclipse.internal.uaa.monitor.NatureAndBuilderUsageMonitor.access$0(NatureAndBuilderUsageMonitor.java:135)
+	at org.springframework.ide.eclipse.internal.uaa.monitor.NatureAndBuilderUsageMonitor$3.run(NatureAndBuilderUsageMonitor.java:103)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.core.jobs 2 2 2016-08-29 09:08:27.423
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.springframework.ide.eclipse.roo.core.RooCoreActivator$1
+!SESSION 2016-08-29 09:08:30.843 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.6.0_11
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=fr_FR
+Framework arguments:  --vm C:\Program Files\Java\jdk1.6.0_11 -XX:PermSize=256m -XX:MaxPermSize=256m -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 --vm C:\Program Files\Java\jdk1.6.0_11 -XX:PermSize=256m -XX:MaxPermSize=256m -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 4 0 2016-08-29 09:08:36.163
+!MESSAGE Could not load repository template extension contributed by org.springsource.ide.eclipse.dashboard.ui with connectorKind jira
+
+!ENTRY org.eclipse.mylyn.tasks.ui 4 0 2016-08-29 09:08:36.178
+!MESSAGE Could not load repository template extension contributed by org.springsource.ide.eclipse.dashboard.ui with connectorKind jira
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-08-29 09:08:36.958
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-08-29 09:08:36.958
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\dell'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.

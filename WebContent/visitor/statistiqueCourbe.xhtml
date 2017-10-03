@@ -1,0 +1,171 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head> 
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+   
+</h:head>
+
+
+	<body style="background-color: #10578D;  ">
+<h:panelGrid columns="5" cellpadding="1" style="  width:100%;margin-bottom:50px;background-color: #FFFFFF; "> 
+<p:button  value="Consulter tableau d'état"  outcome="tableauEtatCTP.xhtml"  icon="ui-icon-calculator" style="  "  />
+ <p:button  value="Consulter les dossiers"   outcome="consulterDossierCTP.xhtml" icon="ui-icon-copy" style="     "  />
+  <p:button  value="Statistiques : Courbes"  outcome="statistiqueCourbe.xhtml"   icon="ui-icon-image"  style="   " />
+ <p:button  value="Statistiques : Tableaux" outcome="statistiqueTableaux.xhtml"  icon="ui-icon-grip-solid-horizontal"  style="   " />
+  </h:panelGrid>
+
+  
+  <h:form>   
+  <fieldset > 
+   <legend   style="color: #FFFFFF">Statistique globale</legend> 
+   
+  <h:panelGrid columns="3" cellpadding="3" style="  width:100%;margin-bottom:50px;background-color: #FFFFFF; "> 
+   
+ 
+<p:chart type="pie"  model="#{chartView.pieModel1}" style="width:400px;height:300px" />
+ 
+ 
+ <p:chart type="pie" model="#{chartView.pieModel2}" style="width:400px;height:300px" />
+ 
+  
+ <p:chart type="pie" model="#{chartView.pieModel3}" style="width:400px;height:300px" />
+  
+   
+ <p:chart type="pie" model="#{chartView.pieModel4}" style="width:400px;height:300px" />
+ 
+    
+ <p:chart type="pie" model="#{chartView.pieModel5}" style="width:400px;height:300px" />
+ 
+   
+ <p:chart type="pie" model="#{chartView.pieModel6}" style="width:400px;height:300px" />
+  
+ 
+ <p:chart type="pie" model="#{chartView.pieModel7}" style="width:400px;height:300px" />
+ 
+ 
+ </h:panelGrid>
+  </fieldset>
+  
+  
+  
+    <fieldset >
+   <legend style="color: #FFFFFF">Statistique par an :  </legend>
+   
+ 
+    <p:selectOneMenu  style="width:200px;"    required="true" value="#{chartView.curentYear}" >
+   
+    
+ <f:selectItem itemLabel="Select One" itemValue="" />
+ <f:selectItems value="#{statistique.listAnne()}" var="var"  itemLabel="#{var}" itemValue="#{var}" />
+  <p:ajax   update="StatAn" ></p:ajax>
+ 
+ </p:selectOneMenu>
+  	 
+ <p:panel id="StatAn">
+   
+  <h:panelGrid columns="3" cellpadding="3" style="  width:100%;margin-bottom:50px;background-color: #FFFFFF; "> 
+   
+ 
+<p:chart type="pie"  model="#{chartView.pieModel9}" style="width:400px;height:300px"   />
+ 
+ <p:chart type="pie" model="#{chartView.pieModel10}" style="width:400px;height:300px" />
+ 
+ <p:chart type="pie" model="#{chartView.pieModel11}" style="width:400px;height:300px" />
+ 
+ <p:chart type="pie" model="#{chartView.pieModel12}" style="width:400px;height:300px" />
+ 
+ <p:chart type="pie" model="#{chartView.pieModel13}" style="width:400px;height:300px" />
+ 
+ <p:chart type="pie" model="#{chartView.pieModel14}" style="width:400px;height:300px" />
+ 
+ <p:chart type="pie" model="#{chartView.pieModel15}" style="width:400px;height:300px" />
+  
+ <p:chart type="pie" model="#{chartView.pieModel24}" style="width:400px;height:400px" />
+   
+ <p:chart type="pie" model="#{chartView.pieModel25}" style="width:400px;height:400px" />
+ 
+  </h:panelGrid>
+  
+ </p:panel>
+ 
+		
+   </fieldset>
+  
+  
+  
+  
+  
+      <fieldset   style="margin-top: 50px;"> 
+   <legend style="color: #FFFFFF">Statistique par mois</legend> 
+   
+   
+      <p:selectOneMenu  style="width:200px;"    required="true" value="#{chartView.curentMonth}" >   
+ <f:selectItem itemLabel="Select One" itemValue="" />
+  <f:selectItem itemLabel="Janvier" itemValue="01" />
+   <f:selectItem itemLabel="Février" itemValue="02" />
+    <f:selectItem itemLabel="Mars" itemValue="03" />
+     <f:selectItem itemLabel="Avril" itemValue="04" />
+      <f:selectItem itemLabel="Mai" itemValue="05" />
+       <f:selectItem itemLabel="Juin" itemValue="06" />
+        <f:selectItem itemLabel="Juillet" itemValue="07" />
+         <f:selectItem itemLabel="Oût" itemValue="08" />
+          <f:selectItem itemLabel="Septembre" itemValue="09" />
+           <f:selectItem itemLabel="Octobre" itemValue="10" />
+            <f:selectItem itemLabel="Novembre" itemValue="11" />
+             <f:selectItem itemLabel="Décembre" itemValue="12" />             
+  <p:ajax   update="StatMn" ></p:ajax> 
+ </p:selectOneMenu>
+    <p:selectOneMenu  style="width:200px;"    required="true" value="#{chartView.curentYear}" >   
+ <f:selectItem itemLabel="Select One" itemValue="" />
+ <f:selectItems value="#{statistique.listAnne()}" var="var"  itemLabel="#{var}" itemValue="#{var}" />
+  <p:ajax   update="StatMn" ></p:ajax> 
+ </p:selectOneMenu>
+  
+
+  	 
+ <p:panel id="StatMn">
+   
+  <h:panelGrid columns="3" cellpadding="3" style="  width:100%;margin-bottom:50px;background-color: #FFFFFF; "> 
+   
+ 
+<p:chart type="pie"  model="#{chartView.pieModel17}" style="width:400px;height:300px"   />
+ 
+ <p:chart type="pie" model="#{chartView.pieModel18}" style="width:400px;height:300px" />
+ 
+   
+ <p:chart type="pie" model="#{chartView.pieModel19}" style="width:400px;height:300px" />
+ 
+ <p:chart type="pie" model="#{chartView.pieModel20}" style="width:400px;height:300px" />
+ 
+ <p:chart type="pie" model="#{chartView.pieModel21}" style="width:400px;height:300px" />
+ 
+ <p:chart type="pie" model="#{chartView.pieModel22}" style="width:400px;height:300px" />
+ 
+ <p:chart type="pie" model="#{chartView.pieModel23}" style="width:400px;height:300px" />
+ 
+  
+  </h:panelGrid>
+  
+  
+ </p:panel>
+ 
+   
+   
+   </fieldset>
+  
+  
+  
+  
+  
+    </h:form>  
+ 	</body>	
+	</html>
+ 
+    
+  

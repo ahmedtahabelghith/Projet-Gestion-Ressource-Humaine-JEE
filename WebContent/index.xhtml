@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head> 
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+</h:head>
+
+
+	<body style="background-color: #10578D;">
+
+	<h:form  >
+		 
+		 <center>
+		 <p:imageSwitch effect="shuffle"
+				style=" border: solid 1px #C0C0C0 ;  margin-top:20px; width:900px; heigth:700px;    border-radius: 25px; ">
+				<ui:repeat value="../images">
+				    <p:graphicImage value="../images/conect.png"  style="width:900px; heigth:700px;background-color: #FFFFFF;border-radius: 25px; "/>
+					<p:graphicImage value="../images/elan.png" style="width:900px; heigth:700px; background-color: #FFFFFF;border-radius: 25px; " />
+					<p:graphicImage value="../images/pes.png" style="width:900px; heigth:700px; background-color: #FFFFFF;border-radius: 25px; " />
+					<p:graphicImage value="../images/reet.png" style="width:900px; heigth:700px; background-color: #FFFFFF;border-radius: 25px; " />
+					<p:graphicImage value="../images/swisscontact.jpg" style="width:900px; heigth:700px; background-color: #FFFFFF;border-radius: 25px; " />
+					 
+					
+				</ui:repeat>
+			</p:imageSwitch>
+	
+	<div style="margin-top:15px;">
+			<i class="fa fa-sign-in" style="color: #FFFFFF;" /> <p:link outcome="connexion.xhtml" value="Connexion" style="color:#FFFFFF; text-decoration:none;margin-left:10px;"/>
+	</div>
+</center>
+
+	</h:form>
+	
+	</body>
+	
+	</html>

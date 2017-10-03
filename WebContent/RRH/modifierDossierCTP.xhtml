@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head> 
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+<style>
+ 
+tr{height: 50px;}
+
+</style>
+</h:head>
+ 
+ 
+
+<h:body style="background-color: #10578D;   ">
+ 
+<h:panelGrid columns="5" cellpadding="1" style="  width:100%;margin-bottom:50px;background-color: #FFFFFF; "> 
+<p:button  value="Consulter tableau d'état"  outcome="../faces/RRH/tableauEtatCTP.xhtml"  icon="ui-icon-calculator" style="  "  />
+ <p:button  value="Consulter les dossiers"   outcome="../faces/RRH/consulterDossierCTP.xhtml" icon="ui-icon-copy" style="     "  />
+ <p:button  value="Modifier les dossiers"   outcome="../faces/RRH/modifierDossierCTP.xhtml"  icon="ui-icon-pencil" style="    "  />
+ <p:button  value="Statistiques : Courbes"  outcome="../faces/RRH/statistiqueCourbe.xhtml"   icon="ui-icon-image"  style="   " />
+ <p:button  value="Statistiques : Tableaux" outcome="../faces/RRH/statistiqueTableaux.xhtml"  icon="ui-icon-grip-solid-horizontal"  style="   " />
+  </h:panelGrid>
+ 
+ 
+<fieldset id="t">
+<legend><b style="color:#FFFFFF; size: 25px;">CTP actuelle</b></legend>
+
+<h:form  id="f10" >
+<center>
+  
+    <p:dataGrid var="CTP"  id="f"  value="#{ctpFoldersBean.listCtpActuelle()}" columns="3" layout="grid"  style="width:90%;"
+        rows="12" paginator="true"    
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16">
+ 
+        <f:facet name="header">
+            Les dossies des candidats
+        </f:facet>
+ 
+        <p:panel header="#{CTP.candidates.firstName} #{CTP.candidates.lastName}" style="text-align:center; "  >
+            <h:panelGrid columns="1" style="width:100%">
+                
+                <p:graphicImage value="../images/imagesCTP/#{ctpFoldersBean.testSurImageCTP(CTP.photo,CTP.candidates.sexe)}" style="width:120px; height:100px;  "/> 
+      
+                Matricule :<h:outputText value="#{CTP.matricule}" />
+ 			  <h:outputText value="#{CTP.ctpSituation}" />
+                <p:commandLink   onclick="PF('dlg').show()" title="Affiche Detail" update=":f2:pan" >
+             			 
+             				
+                  		<f:setPropertyActionListener value="#{CTP}" target="#{ctpFolders.currentCtp}" />
+                    <p:graphicImage value="../images/dossier.png" style="width:30px; height:30px; " /> 
+ 					 
+                    
+                </p:commandLink>
+                 
+                
+            </h:panelGrid>
+            
+        </p:panel>
+  
+    </p:dataGrid>
+  
+ </center>
+ 	 </h:form>	
+
+  </fieldset>
+
+
+
+
+
+
+<fieldset style="margin-top: 70px;" id="t2">
+<legend><b style="color:#FFFFFF; size: 25px;">Ancien CTP</b></legend>
+<h:form  id="f1" >
+<center>
+    <p:dataGrid var="CTP"   value="#{ctpFoldersBean.listCtpSortant()}" columns="3" layout="grid" style="width:90%;"
+        rows="12" paginator="true"  
+
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16">
+ 
+        <f:facet name="header">
+            Les dossies des candidats
+        </f:facet>
+ 
+        <p:panel header="#{CTP.candidates.firstName} #{CTP.candidates.lastName}" style="text-align:center; "  >
+            <h:panelGrid columns="1" style="width:100%">
+                <p:graphicImage value="../images/imagesCTP/#{ctpFoldersBean.testSurImageCTP(CTP.photo,CTP.candidates.sexe)}" style="width:120px; height:100px;  "/> 
+ 
+                Matricule :<h:outputText value="#{CTP.matricule}" />
+ 			  <h:outputText value="#{CTP.ctpSituation}" />
+                <p:commandLink   onclick="PF('dlg').show()" title="Affiche Detail" update=":f2:pan" >
+             			 
+             				
+                  		<f:setPropertyActionListener value="#{CTP}" target="#{ctpFolders.currentCtp}" />
+                    <p:graphicImage value="../images/dossier.png" style="width:30px; height:30px; " /> 
+ 					 
+                    
+                </p:commandLink>
+                 
+                
+            </h:panelGrid>
+            
+        </p:panel>
+  
+    </p:dataGrid>
+ </center>
+ 	 </h:form>	
+
+  </fieldset>
+  
+  
+  
+
+  
+  
+  
+   <p:dialog  
+					header="Dossier CTP"
+					widgetVar="dlg" showEffect="explode" hideEffect="explode"
+					modal="true"   height="600px" width="93%" resizable="false"  >
+	 		   
+		 <h:form id="f2" enctype="multipart/form-data">
+			 <p:panel id="pan" style="  margin-bottom:50px" >	
+			  	 
+	 	 <p:dataTable  value="#">
+          <p:column headerText="#{ctpFolders.currentCtp.candidates.lastName} #{ctpFolders.currentCtp.candidates.firstName} ">
+               <center><p:graphicImage value="../images/imagesCTP/#{ctpFoldersBean.testSurImageCTP(ctpFolders.currentCtp.photo,ctpFolders.currentCtp.candidates.sexe)}" style="width:250px; height:250px;  "/></center>
+			 </p:column> 
+        </p:dataTable>
+        
+        <p:dataTable  value="#">
+         
+  			  <p:column headerText="Télephone" style="width:80px;"  >
+                <h:outputText value="#{ctpFolders.currentCtp.candidates.tel}" />
+            </p:column>
+             <p:column headerText="Email">
+                <h:outputText value="#{ctpFolders.currentCtp.candidates.email}" title="#{ctpFolders.currentCtp.candidates.email}" />
+            </p:column>
+              <p:column headerText="Fonction" style="width:120px;" >
+                <h:outputText value="#{ctpFolders.currentCtp.candidates.additionalCandidates.post}" />
+            </p:column>
+               <p:column headerText="Département" style="width:100px;" >
+                <h:outputText value="#{ctpFolders.currentCtp.candidates.additionalCandidates.departement}" />
+            </p:column>
+            <p:column headerText="Date d'entrée" style="width:90px;" >
+                <h:outputText value="#{ctpFolders.currentCtp.hiringDate}" />
+            </p:column>
+            
+               <p:column headerText="Date de sortie" style="width:90px;" >
+                <h:outputText value="#{ctpFolders.currentCtp.exitDate}" />
+            </p:column>
+          
+            <p:column headerText="Fin de contrat" style="width:90px;" >
+                <h:outputText value="#{ctpFolders.currentCtp.endContractDate}" />
+            </p:column> 
+            
+            <p:column headerText="Situation"  style="width:90px;">
+                <h:outputText value="#{ctpFolders.currentCtp.ctpSituation}" />
+            </p:column>
+               <p:column headerText="RIB">
+                <p:inputText value="#{ctpFolders.currentCtp.rib}" style="width:90px" title="#{ctpFolders.currentCtp.rib}" />
+                <p:commandButton value="OK"      style="border:2px solid #FFFFFF; position: absolute; "  action="#{ctpFolders.saveCtpFolders()}" >
+		       </p:commandButton>
+            </p:column>
+        </p:dataTable>
+        
+						     
+						 
+ 
+        <p:dataTable   value="#" style="margin-top:50px; " >
+             <p:column headerText="Pièces Constitutives" >
+             <table  >
+           
+               <tr><td><p:link  href="../cvCTP/cvinitial#{ctpFolders.currentCtp.candidates.firstName}#{ctpFolders.currentCtp.candidates.lastName}.pdf" value="CV initial" style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.initialCv))}"/> </td></tr>
+				 <tr><td><p:link  href="../cvCTP/cvmodifie#{ctpFolders.currentCtp.candidates.firstName}#{ctpFolders.currentCtp.candidates.lastName}.pdf" value="CV modifié" style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.customCv))}"/></td></tr>
+                 <tr><td>  <p:link  href="../assurancesCTP/assurance#{ctpFolders.currentCtp.candidates.firstName}#{ctpFolders.currentCtp.candidates.lastName}.pdf" value="Copie assurances" style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.assuranceCopy))}"/></td></tr>
+               <tr><td><p:link  href="../cinCTP/cin#{ctpFolders.currentCtp.candidates.firstName}#{ctpFolders.currentCtp.candidates.lastName}.pdf" value="Copie CIN"  style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.cinCopy))}"/></td></tr>
+               <tr><td><p:link  href="../evaluationTestPresProfileCTP/testprofil#{ctpFolders.currentCtp.candidates.firstName}#{ctpFolders.currentCtp.candidates.lastName}.pdf" value="Evaluation test PresProfile" style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.evaluationTestPresProfile))}"/></td></tr>
+               <tr><td><p:link  href="../diplomeCTP/diplome#{ctpFolders.currentCtp.candidates.firstName}#{ctpFolders.currentCtp.candidates.lastName}.pdf" value="Copie diplôme" style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.diplomaCopy))}"/></td></tr>
+                <tr><td><span style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.photo))}"> Photo</span></td></tr>
+                  <tr><td><p:link outcome="../coach/#{ctpFoldersBean.noteReetExiste(ctpFolders.currentCtp.noteReet)}" value="Note de REET" style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.changeVariable(ctpFolders.currentCtp.noteReet))}"/></td></tr>
+                 <tr><td><p:link outcome="../coach/#{ctpFoldersBean.evaluationExperianceExiste(ctpFolders.currentCtp.evaluationExperience.idEvaluation)}" value="Evaluation d'expérience" style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.evaluationExperience.idEvaluation))}"/></td></tr>
+                 <tr><td><p:link outcome="../coach/#{ctpFoldersBean.attestationExiste(ctpFolders.currentCtp.attestationJob)}" value="Attesttaion de travail" style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.changeVariable(ctpFolders.currentCtp.attestationJob))}"/></td></tr>
+                <tr><td><p:link outcome="../coach/consulterValidac.xhtml" value="Validac" style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.changeVariable(ctpFolders.currentCtp.validacs))}"/>
+              </td></tr>
+                  <tr><td><p:link outcome="../coach/#{ctpFoldersBean.contratExiste(ctpFolders.currentCtp.contrat)}" value="Contrat de travail" style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.changeVariable(ctpFolders.currentCtp.contrat))}"/></td></tr>
+                 <tr><td><p:link outcome="../coach/#{ctpFoldersBean.droitImageExiste(ctpFolders.currentCtp.licensePhoto)}" value="Autorisation droit d'image" style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.changeVariable(ctpFolders.currentCtp.licensePhoto))}"/></td></tr>
+                 <tr><td><p:link outcome="../coach/#{ctpFoldersBean.reglementInterneExiste(ctpFolders.currentCtp.internalRules)}" value="Règlement interne" style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.changeVariable(ctpFolders.currentCtp.internalRules))}"/></td></tr>
+                   <tr><td><p:link outcome="../coach/#{sheetInformationBean.sheetInformationExiste(ctpFolders.currentCtp)}" value="Fiche de renseignements" style="color:#{ctpFoldersBean.coleurBoolean(ctpFoldersBean.rechercheMatriculeDansSheetInformation(ctpFolders.currentCtp.matricule))}"/></td></tr>
+               <tr><td><span style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.changeVariable(ctpFolders.currentCtp.certificat))}">Certificat</span></td></tr>
+               </table>
+            </p:column>
+            
+            
+             <p:column headerText="existe oui/non">
+             <table  >
+             <tr> <td><span style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.initialCv))}">#{ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.initialCv)}</span>
+				   
+             </td></tr>
+				 <tr> <td><span style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.customCv))}"> #{ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.customCv)}</span>
+				
+             </td></tr>
+             <tr> <td><span style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.assuranceCopy))}"> #{ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.assuranceCopy)}</span>
+			      
+              </td></tr>
+             <tr> <td><span style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.cinCopy))}">#{ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.cinCopy)}</span>
+			     
+             </td></tr>
+               <tr> <td><span style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.evaluationTestPresProfile))}">#{ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.evaluationTestPresProfile)}</span>
+			   
+             </td></tr>
+			   <tr> <td><span style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.diplomaCopy))}"> #{ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.diplomaCopy)}</span>
+			   
+             </td></tr>
+             <tr> <td><span style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.photo))}"> #{ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.photo)}</span>
+			  
+			   </td></tr>
+             <tr> <td><span style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.changeVariable(ctpFolders.currentCtp.noteReet))}">#{ctpFoldersBean.changeVariable(ctpFolders.currentCtp.noteReet)}</span>
+			  
+              </td></tr>
+              <tr> <td><span style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.evaluationExperience.idEvaluation))}">#{ctpFoldersBean.testChaineVide(ctpFolders.currentCtp.evaluationExperience.idEvaluation)}</span>
+			    
+             </td></tr>
+			  <tr> <td><span style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.changeVariable(ctpFolders.currentCtp.attestationJob))}"> #{ctpFoldersBean.changeVariable(ctpFolders.currentCtp.attestationJob)}</span>
+			  
+              </td></tr>
+              <tr> <td><span style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.changeVariable(ctpFolders.currentCtp.validacs))}"> #{ctpFoldersBean.changeVariable(ctpFolders.currentCtp.validacs)}</span>
+			  
+             </td></tr>
+              <tr> <td><span style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.changeVariable(ctpFolders.currentCtp.contrat))}"> #{ctpFoldersBean.changeVariable(ctpFolders.currentCtp.contrat)}</span>
+				
+             </td></tr>
+              <tr> <td><span style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.changeVariable(ctpFolders.currentCtp.licensePhoto))}">#{ctpFoldersBean.changeVariable(ctpFolders.currentCtp.licensePhoto)}</span>
+			   
+              </td></tr>
+               <tr> <td><span style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.changeVariable(ctpFolders.currentCtp.internalRules))}"> #{ctpFoldersBean.changeVariable(ctpFolders.currentCtp.internalRules)}</span>
+			    
+             </td></tr>             
+             <tr> <td>  <span style="color:#{ctpFoldersBean.coleurBoolean(ctpFoldersBean.rechercheMatriculeDansSheetInformation(ctpFolders.currentCtp.matricule))}">   #{ctpFoldersBean.changeVariable(ctpFoldersBean.rechercheMatriculeDansSheetInformation(ctpFolders.currentCtp.matricule))} </span> 
+				   
+            </td></tr>
+		    <tr> <td><span style="color:#{ctpFoldersBean.coleurString(ctpFoldersBean.changeVariable(ctpFolders.currentCtp.certificat))}"> #{ctpFoldersBean.changeVariable(ctpFolders.currentCtp.certificat)}</span>
+			  
+             </td></tr>
+			 </table>
+			  </p:column>
+			  
+             <p:column headerText="Mise à jours" width="40%;">
+               <h:panelGrid columns="2" cellpadding="7"   style="   width:100%;margin-bottom:50px;background-color: #FFFFFF; margin-top:-400px;"> 
+  
+              
+             <p:fileUpload value="#{fileUploadController.file1}"  mode="simple"  allowTypes="/(\.|\/)(pdf)$/"  dragDropSupport="true"/>
+             <p:commandButton   value="Submit" action="#{fileUploadController.uploadCvInitial(ctpFolders.currentCtp)}" ajax="false" />
+			  
+			    <p:fileUpload value="#{fileUploadController.file2}" mode="simple"  allowTypes="/(\.|\/)(pdf)$/"  dragDropSupport="true"/>
+            	<p:commandButton   value="Submit"   action="#{fileUploadController.uploadCvModifier(ctpFolders.currentCtp)}"  ajax="false" />
+				 
+                
+                <p:fileUpload value="#{fileUploadController.file3}" mode="simple"  allowTypes="/(\.|\/)(pdf)$/"  dragDropSupport="true"/>
+            	 <p:commandButton   value="Submit"    action="#{fileUploadController.uploadAssurance(ctpFolders.currentCtp)}" ajax="false" />
+				  
+               
+               			 <p:fileUpload value="#{fileUploadController.file4}" mode="simple"  allowTypes="/(\.|\/)(pdf)$/"  dragDropSupport="true"/>
+            	        <p:commandButton  value="Submit"   action="#{fileUploadController.uploadCIN(ctpFolders.currentCtp)}" ajax="false" />
+				 
+                
+               
+			         <p:fileUpload value="#{fileUploadController.file5}" mode="simple"  allowTypes="/(\.|\/)(pdf)$/"  dragDropSupport="true"/>
+            	        <p:commandButton value="Submit"  action="#{fileUploadController.uploadEvaluationTestPresProfile(ctpFolders.currentCtp)}" ajax="false" />
+		  
+                 <p:fileUpload value="#{fileUploadController.file6}" mode="simple"  allowTypes="/(\.|\/)(pdf)$/"  dragDropSupport="true"/>
+            	        <p:commandButton  value="Submit"   action="#{fileUploadController.uploadDiplomeCTP(ctpFolders.currentCtp)}" ajax="false" />
+				 
+               
+			     <p:fileUpload value="#{fileUploadController.file7}" mode="simple"   ragDropSupport="true"/>
+            	        <p:commandButton   value="Submit"  action="#{fileUploadController.uploadPhoto(ctpFolders.currentCtp)}" ajax="false"  update="f"  />
+			 
+               
+              </h:panelGrid>
+			  </p:column>
+			  
+		  
+		  <p:growl id="messages" showDetail="true" /> 
+		  
+		  
+		  
+			  
+	            </p:dataTable>
+  
+						  
+						
+			</p:panel>
+ 		</h:form>
+ </p:dialog>  
+ 
+		</h:body>
+		
+		 
+	 
+		</html>
